@@ -11,11 +11,13 @@ const common_rules = require("./rules/common");
 const type_system_rules = require("./rules/type_system");
 const document_config_rules = require("./rules/document_config");
 const document_view_rules = require("./rules/document_view");
+const document_grammar_rules = require("./rules/document_grammar");
 const document_metadata_rules = require("./rules/document_metadata");
-const section_or_requirement_rules = require("./rules/section_or_requirement");
+// const section_or_requirement_rules = require("./rules/section_or_requirement");
 
 module.exports = grammar({
   name: "strictdoc",
+  extras: (_) => ["\r"],
 
   rules: {
     source_file: ($) =>
@@ -28,23 +30,17 @@ module.exports = grammar({
         "\n",
         optional(field("config", $.document_config)),
         optional(field("view", $.document_view)),
-        // optional(seq("\n", field("grammar", $.document_grammar))),
+        optional(field("grammar", $.document_grammar)),
         // field("section_contents", repeat($.section_or_requirement)),
+        optional($._eof),
       ),
 
-    ...common_rules,
-    ...type_system_rules,
     ...document_config_rules,
-    ...document_metadata_rules,
     ...document_view_rules,
+    ...document_grammar_rules,
+    ...document_metadata_rules,
+    ...type_system_rules,
+    ...common_rules,
     // ...section_or_requirement_rules,
-
-    // Text parts
-    boolean_choice: () => choice("True", "False"),
-    markup_choice: () => choice("RST", "Text", "HTML"),
-    auto_levels_choice: () => choice("On", "Off"),
-    layout_choice: () => choice("Default", "Website"),
-    requirement_style_choice: () =>
-      choice("Plain", "Inline", "Simple", "Narrative", "Table", "Zebra"),
   },
 });

@@ -1,5 +1,20 @@
 [
   {
+    "type": "auto_levels",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "auto_levels_choice",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "auto_levels_choice",
     "named": true,
     "fields": {}
@@ -10,30 +25,46 @@
     "fields": {}
   },
   {
-    "type": "document_config",
+    "type": "choice_option",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "default_view",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "single_line_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "document_classification",
     "named": true,
     "fields": {
-      "auto_levels": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "auto_levels_choice",
-            "named": true
-          }
-        ]
-      },
       "classification": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "single_line_string",
             "named": true
           }
         ]
-      },
-      "custom_metadata": {
+      }
+    }
+  },
+  {
+    "type": "document_config",
+    "named": true,
+    "fields": {
+      "metadata": {
         "multiple": false,
         "required": false,
         "types": [
@@ -43,72 +74,22 @@
           }
         ]
       },
-      "date": {
+      "options": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "single_line_string",
+            "type": "document_config_options",
             "named": true
           }
         ]
       },
-      "enable_mid": {
+      "root": {
         "multiple": false,
         "required": false,
         "types": [
           {
             "type": "boolean_choice",
-            "named": true
-          }
-        ]
-      },
-      "layout": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "layout_choice",
-            "named": true
-          }
-        ]
-      },
-      "markup": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "markup_choice",
-            "named": true
-          }
-        ]
-      },
-      "requirement_in_toc": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "boolean_choice",
-            "named": true
-          }
-        ]
-      },
-      "requirement_prefix": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "single_line_string",
-            "named": true
-          }
-        ]
-      },
-      "requirement_style": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "requirement_style_choice",
             "named": true
           }
         ]
@@ -122,17 +103,68 @@
             "named": true
           }
         ]
-      },
-      "version": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "single_line_string",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "document_classification",
+          "named": true
+        },
+        {
+          "type": "document_date",
+          "named": true
+        },
+        {
+          "type": "document_requirement",
+          "named": true
+        },
+        {
+          "type": "document_version",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "document_config_options",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "auto_levels",
+          "named": true
+        },
+        {
+          "type": "default_view",
+          "named": true
+        },
+        {
+          "type": "enable_mid",
+          "named": true
+        },
+        {
+          "type": "in_toc_tag",
+          "named": true
+        },
+        {
+          "type": "layout",
+          "named": true
+        },
+        {
+          "type": "markup",
+          "named": true
+        },
+        {
+          "type": "view_style",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -140,7 +172,37 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "document_custom_metadata_entries",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "document_custom_metadata_entries",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "document_custom_metadata_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "document_custom_metadata_entry",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -177,6 +239,73 @@
     }
   },
   {
+    "type": "document_date",
+    "named": true,
+    "fields": {
+      "date": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "document_grammar",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "grammar_elements",
+          "named": true
+        },
+        {
+          "type": "import_from_file",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "document_requirement",
+    "named": true,
+    "fields": {
+      "requirement_prefix": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "document_version",
+    "named": true,
+    "fields": {
+      "version": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "document_view",
     "named": true,
     "fields": {},
@@ -192,17 +321,434 @@
     }
   },
   {
+    "type": "enable_mid",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean_choice",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_element",
+    "named": true,
+    "fields": {
+      "grammar_fields": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "grammar_fields",
+            "named": true
+          }
+        ]
+      },
+      "grammar_relations": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "grammar_relations",
+            "named": true
+          }
+        ]
+      },
+      "properties": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "grammar_properties",
+            "named": true
+          }
+        ]
+      },
+      "requirement_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "requirement_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "grammar_elements",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "grammar_element",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "grammar_field_multiple_choice",
+          "named": true
+        },
+        {
+          "type": "grammar_field_required",
+          "named": true
+        },
+        {
+          "type": "grammar_field_single_choice",
+          "named": true
+        },
+        {
+          "type": "grammar_field_string",
+          "named": true
+        },
+        {
+          "type": "grammar_field_tag",
+          "named": true
+        },
+        {
+          "type": "grammar_field_title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_field_choices",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "choice_option",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_field_multiple_choice",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "grammar_field_choices",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_field_required",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean_choice",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "grammar_field_single_choice",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "grammar_field_choices",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_field_tag",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "grammar_field_title",
+    "named": true,
+    "fields": {
+      "human_title": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      },
+      "title": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "grammar_fields",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "grammar_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_properties",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "grammar_property_is_composite",
+          "named": true
+        },
+        {
+          "type": "grammar_property_prefix",
+          "named": true
+        },
+        {
+          "type": "grammar_property_view_style",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_property_is_composite",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean_choice",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_property_prefix",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "single_line_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_property_view_style",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "style_choice",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_relation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "grammar_relation_child",
+          "named": true
+        },
+        {
+          "type": "grammar_relation_file",
+          "named": true
+        },
+        {
+          "type": "grammar_relation_parent",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar_relation_child",
+    "named": true,
+    "fields": {
+      "relation_role": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "grammar_relation_file",
+    "named": true,
+    "fields": {
+      "relation_role": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "grammar_relation_parent",
+    "named": true,
+    "fields": {
+      "relation_role": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "grammar_relations",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "grammar_relation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_from_file",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "in_toc_tag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean_choice",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "layout",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "layout_choice",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "layout_choice",
     "named": true,
     "fields": {}
   },
   {
-    "type": "markup_choice",
+    "type": "markup",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "markup_choice",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "requirement_style_choice",
+    "type": "markup_choice",
     "named": true,
     "fields": {}
   },
@@ -217,6 +763,16 @@
         "types": [
           {
             "type": "document_config",
+            "named": true
+          }
+        ]
+      },
+      "grammar": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "document_grammar",
             "named": true
           }
         ]
@@ -254,6 +810,11 @@
     }
   },
   {
+    "type": "style_choice",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "view_element",
     "named": true,
     "fields": {
@@ -287,7 +848,7 @@
           "named": true
         },
         {
-          "type": "view_element_tags",
+          "type": "view_element_tag",
           "named": true
         }
       ]
@@ -336,7 +897,7 @@
     }
   },
   {
-    "type": "view_element_tags",
+    "type": "view_element_tag",
     "named": true,
     "fields": {
       "object_type": {
@@ -362,7 +923,34 @@
     }
   },
   {
+    "type": "view_style",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "style_choice",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\u0000",
+    "named": false
+  },
+  {
     "type": "\n",
+    "named": false
+  },
+  {
+    "type": " ",
+    "named": false
+  },
+  {
+    "type": "  ",
     "named": false
   },
   {
@@ -371,6 +959,42 @@
   },
   {
     "type": "    - NAME: ",
+    "named": false
+  },
+  {
+    "type": "    HUMAN_TITLE: ",
+    "named": false
+  },
+  {
+    "type": "    IS_COMPOSITE: ",
+    "named": false
+  },
+  {
+    "type": "    PREFIX: ",
+    "named": false
+  },
+  {
+    "type": "    REQUIRED: ",
+    "named": false
+  },
+  {
+    "type": "    ROLE: ",
+    "named": false
+  },
+  {
+    "type": "    TYPE: MultipleChoice",
+    "named": false
+  },
+  {
+    "type": "    TYPE: SingleChoice",
+    "named": false
+  },
+  {
+    "type": "    TYPE: Tag",
+    "named": false
+  },
+  {
+    "type": "    VIEW_STYLE: ",
     "named": false
   },
   {
@@ -386,7 +1010,23 @@
     "named": false
   },
   {
-    "type": "  HIDDEN_TAGS:",
+    "type": "  - TITLE: ",
+    "named": false
+  },
+  {
+    "type": "  - TYPE: Child",
+    "named": false
+  },
+  {
+    "type": "  - TYPE: File",
+    "named": false
+  },
+  {
+    "type": "  - TYPE: Parent",
+    "named": false
+  },
+  {
+    "type": "  FIELDS:",
     "named": false
   },
   {
@@ -394,11 +1034,35 @@
     "named": false
   },
   {
+    "type": "  PROPERTIES:",
+    "named": false
+  },
+  {
+    "type": "  RELATIONS:",
+    "named": false
+  },
+  {
     "type": "  TAGS:",
     "named": false
   },
   {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ", ",
+    "named": false
+  },
+  {
     "type": "- ID: ",
+    "named": false
+  },
+  {
+    "type": "- TAG: ",
     "named": false
   },
   {
@@ -418,7 +1082,15 @@
     "named": false
   },
   {
+    "type": "DEFAULT_VIEW: ",
+    "named": false
+  },
+  {
     "type": "Default",
+    "named": false
+  },
+  {
+    "type": "ELEMENTS:\n",
     "named": false
   },
   {
@@ -430,7 +1102,15 @@
     "named": false
   },
   {
+    "type": "HIDDEN_TAGS:",
+    "named": false
+  },
+  {
     "type": "HTML",
+    "named": false
+  },
+  {
+    "type": "IMPORT_FROM_FILE: ",
     "named": false
   },
   {
@@ -446,11 +1126,15 @@
     "named": false
   },
   {
-    "type": "METADATA:",
+    "type": "METADATA:\n",
     "named": false
   },
   {
     "type": "MID: ",
+    "named": false
+  },
+  {
+    "type": "NODE_IN_TOC",
     "named": false
   },
   {
@@ -475,6 +1159,14 @@
   },
   {
     "type": "Plain",
+    "named": false
+  },
+  {
+    "type": "REQUIREMENT_IN_TOC",
+    "named": false
+  },
+  {
+    "type": "REQUIREMENT_STYLE",
     "named": false
   },
   {
@@ -522,6 +1214,10 @@
     "named": false
   },
   {
+    "type": "VIEW_STYLE",
+    "named": false
+  },
+  {
     "type": "Website",
     "named": false
   },
@@ -534,7 +1230,23 @@
     "named": false
   },
   {
+    "type": "[GRAMMAR]",
+    "named": false
+  },
+  {
     "type": "document_custom_metadata_key",
+    "named": true
+  },
+  {
+    "type": "field_name",
+    "named": true
+  },
+  {
+    "type": "grammar_field_string",
+    "named": true
+  },
+  {
+    "type": "requirement_type",
     "named": true
   },
   {

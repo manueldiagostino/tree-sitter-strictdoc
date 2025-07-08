@@ -1,18 +1,9 @@
 module.exports = {
   boolean_choice: () => choice("True", "False"),
 
-  choice_option: () => /[\w\/-]+( *[\w\/-]+)*/,
+  choice_option: () => field("option", /[\w\/-]+/),
 
-  choice_option_xs: ($) => seq(", ", $.choice_option),
-
-  requirement_type: ($) =>
-    prec.right(
-      1,
-      seq(
-        // !ReservedKeyword viene gestito con prec.right
-        /[A-Z]+(_[A-Z]+)*/,
-      ),
-    ),
+  requirement_type: ($) => /[A-Z]+[_A-Z]*/,
 
   reserved_keyword: () => choice("DOCUMENT", "GRAMMAR"),
 

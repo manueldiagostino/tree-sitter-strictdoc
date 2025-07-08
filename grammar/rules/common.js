@@ -1,7 +1,7 @@
 const REGEX_UID_PATTERN = /[\w]+[\w()\-\/\.:_]*/;
 
 module.exports = {
-  single_line_string: ($) => /[^\s]{1,}.*/,
+  single_line_string: ($) => /[^\s][^\n\r]*/,
   multi_line_string: ($) =>
     seq(">>>", "\n", field("text_part", $.text_part), "^<<<"),
 
@@ -22,4 +22,8 @@ module.exports = {
     ),
 
   uid_string: ($) => REGEX_UID_PATTERN,
+  field_name: ($) => /[A-Z][_A-Z0-9]*/,
+  boolean_choice: () => choice("True", "False"),
+  new_line: ($) => "\n",
+  _eof: ($) => "\0",
 };

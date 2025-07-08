@@ -9,11 +9,13 @@ module.exports = {
       optional(seq("  NAME: ", field("name", $.single_line_string), "\n")),
       "  TAGS:",
       "\n",
-      repeat1($.view_element_tags),
-      optional(seq("  HIDDEN_TAGS:", "\n", repeat1($.view_element_hidden_tag))),
+      repeat1($.view_element_tag),
+      optional(
+        seq("  ", "HIDDEN_TAGS:", "\n", repeat1($.view_element_hidden_tag)),
+      ),
     ),
 
-  view_element_tags: ($) =>
+  view_element_tag: ($) =>
     seq(
       "  - OBJECT_TYPE: ",
       field("object_type", $.single_line_string),

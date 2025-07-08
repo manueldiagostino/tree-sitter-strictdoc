@@ -1,0 +1,84 @@
+(source_file [0, 0] - [44, 0]
+  mid: (single_line_string [1, 5] - [1, 37])
+  title: (single_line_string [2, 7] - [2, 17])
+  config: (document_config [3, 0] - [13, 0]
+    uid: (uid_string [3, 5] - [3, 12])
+    (document_version [4, 0] - [5, 0]
+      version: (single_line_string [4, 9] - [4, 58]))
+    (document_date [5, 0] - [6, 0]
+      date: (single_line_string [5, 6] - [5, 26]))
+    options: (document_config_options [6, 0] - [10, 0]
+      (enable_mid [7, 0] - [8, 0]
+        (boolean_choice [7, 14] - [7, 18]))
+      (view_style [8, 0] - [9, 0]
+        (style_choice [8, 14] - [8, 20]))
+      (in_toc_tag [9, 0] - [10, 0]
+        (boolean_choice [9, 15] - [9, 19])))
+    metadata: (document_custom_metadata [10, 0] - [13, 0]
+      (document_custom_metadata_entries [11, 0] - [13, 0]
+        (document_custom_metadata_entry [11, 0] - [12, 0]
+          (document_custom_metadata_key_value_pair [11, 2] - [11, 12]
+            key: (document_custom_metadata_key [11, 2] - [11, 6])
+            value: (single_line_string [11, 8] - [11, 12])))
+        (document_custom_metadata_entry [12, 0] - [13, 0]
+          (document_custom_metadata_key_value_pair [12, 2] - [12, 12]
+            key: (document_custom_metadata_key [12, 2] - [12, 6])
+            value: (single_line_string [12, 8] - [12, 12]))))))
+  grammar: (document_grammar [13, 0] - [44, 0]
+    (grammar_elements [15, 0] - [44, 0]
+      (grammar_element [16, 0] - [31, 0]
+        requirement_type: (requirement_type [16, 7] - [16, 14])
+        properties: (grammar_properties [17, 0] - [21, 0]
+          (grammar_property_is_composite [18, 0] - [19, 0]
+            (boolean_choice [18, 18] - [18, 22]))
+          (grammar_property_prefix [19, 0] - [20, 0]
+            (single_line_string [19, 12] - [19, 16]))
+          (grammar_property_view_style [20, 0] - [21, 0]
+            (style_choice [20, 16] - [20, 25])))
+        grammar_fields: (grammar_fields [21, 0] - [31, 0]
+          (grammar_field [22, 0] - [25, 0]
+            (grammar_field_title [22, 0] - [23, 0]
+              title: (field_name [22, 11] - [22, 14]))
+            (grammar_field_string [23, 0] - [24, 0])
+            (grammar_field_required [24, 0] - [25, 0]
+              value: (boolean_choice [24, 14] - [24, 19])))
+          (grammar_field [25, 0] - [28, 0]
+            (grammar_field_title [25, 0] - [26, 0]
+              title: (field_name [25, 11] - [25, 14]))
+            (grammar_field_string [26, 0] - [27, 0])
+            (grammar_field_required [27, 0] - [28, 0]
+              value: (boolean_choice [27, 14] - [27, 19])))
+          (grammar_field [28, 0] - [31, 0]
+            (grammar_field_title [28, 0] - [29, 0]
+              title: (field_name [28, 11] - [28, 15]))
+            (grammar_field_single_choice [29, 0] - [30, 0]
+              (grammar_field_choices [29, 22] - [29, 34]
+                (choice_option [29, 23] - [29, 24])
+                (choice_option [29, 26] - [29, 27])
+                (choice_option [29, 29] - [29, 30])
+                (choice_option [29, 32] - [29, 33])))
+            (grammar_field_required [30, 0] - [31, 0]
+              value: (boolean_choice [30, 14] - [30, 18])))))
+      (grammar_element [31, 0] - [44, 0]
+        requirement_type: (requirement_type [31, 7] - [31, 11])
+        properties: (grammar_properties [32, 0] - [34, 0]
+          (grammar_property_view_style [33, 0] - [34, 0]
+            (style_choice [33, 16] - [33, 25])))
+        grammar_fields: (grammar_fields [34, 0] - [41, 0]
+          (grammar_field [35, 0] - [38, 0]
+            (grammar_field_title [35, 0] - [36, 0]
+              title: (field_name [35, 11] - [35, 14]))
+            (grammar_field_string [36, 0] - [37, 0])
+            (grammar_field_required [37, 0] - [38, 0]
+              value: (boolean_choice [37, 14] - [37, 18])))
+          (grammar_field [38, 0] - [41, 0]
+            (grammar_field_title [38, 0] - [39, 0]
+              title: (field_name [38, 11] - [38, 20]))
+            (grammar_field_string [39, 0] - [40, 0])
+            (grammar_field_required [40, 0] - [41, 0]
+              value: (boolean_choice [40, 14] - [40, 18]))))
+        grammar_relations: (grammar_relations [41, 0] - [44, 0]
+          (grammar_relation [42, 0] - [43, 0]
+            (grammar_relation_parent [42, 0] - [43, 0]))
+          (grammar_relation [43, 0] - [44, 0]
+            (grammar_relation_file [43, 0] - [44, 0])))))))
