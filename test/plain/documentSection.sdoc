@@ -38,3 +38,17 @@ MID: 75a595ff028741d0bf9067bba8fb787a
 TITLE: Introduction
 
 [/SECTION]
+
+[[COMPOSITE]]
+FIELD_A: Single line field_name
+FIELD_B: >>>
+This is a normal string, I can write multi line
+strings with symbols "<,<<,[" and also special words such as:
+[ANCHOR] or [LINK].
+
+[ANCHOR: SDOC_UG_LINKS_AND_ANCHORS]
+
+I'm also able to insert inline_links [LINK: SDOC_UG_LINKS_AND_ANCHORS].
+<<<
+
+[[/COMPOSITE]]
