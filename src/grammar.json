@@ -110,6 +110,22 @@
           "type": "CHOICE",
           "members": [
             {
+              "type": "FIELD",
+              "name": "section_and_requirement_list",
+              "content": {
+                "type": "SYMBOL",
+                "name": "section_or_requirement_list"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "SYMBOL",
               "name": "_eof"
             },
@@ -1618,6 +1634,14 @@
         {
           "type": "STRING",
           "value": "GRAMMAR"
+        },
+        {
+          "type": "STRING",
+          "value": "SECTION"
+        },
+        {
+          "type": "STRING",
+          "value": "DOCUMENT_FROM_FILE"
         }
       ]
     },
@@ -2070,6 +2094,246 @@
     "_eof": {
       "type": "STRING",
       "value": "\u0000"
+    },
+    "section_or_requirement_list": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "section_or_requirement"
+      }
+    },
+    "section_or_requirement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "sdoc_section"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "document_from_file"
+            }
+          ]
+        }
+      ]
+    },
+    "sdoc_section": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "[SECTION]"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "section_body"
+        },
+        {
+          "type": "STRING",
+          "value": "[/SECTION]"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        }
+      ]
+    },
+    "section_body": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "MID: "
+                },
+                {
+                  "type": "FIELD",
+                  "name": "mid",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "single_line_string"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": "\n"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "UID: "
+                },
+                {
+                  "type": "FIELD",
+                  "name": "uid",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "uid_string"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": "\n"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "LEVEL: "
+                },
+                {
+                  "type": "FIELD",
+                  "name": "custom_level",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "single_line_string"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": "\n"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "TITLE: "
+        },
+        {
+          "type": "FIELD",
+          "name": "title",
+          "content": {
+            "type": "SYMBOL",
+            "name": "single_line_string"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "PREFIX: "
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "REQ_PREFIX: "
+                    }
+                  ]
+                },
+                {
+                  "type": "FIELD",
+                  "name": "requirement_prefix",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "single_line_string"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": "\n"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "section_or_requirement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        }
+      ]
+    },
+    "document_from_file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "[DOCUMENT_FROM_FILE]"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "STRING",
+          "value": "FILE: "
+        },
+        {
+          "type": "FIELD",
+          "name": "path",
+          "content": {
+            "type": "SYMBOL",
+            "name": "single_line_string"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        }
+      ]
     }
   },
   "extras": [

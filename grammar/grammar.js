@@ -13,7 +13,7 @@ const document_config_rules = require("./rules/document_config");
 const document_view_rules = require("./rules/document_view");
 const document_grammar_rules = require("./rules/document_grammar");
 const document_metadata_rules = require("./rules/document_metadata");
-// const section_or_requirement_rules = require("./rules/section_or_requirement");
+const section_or_requirement_rules = require("./rules/section_or_requirement");
 
 module.exports = grammar({
   name: "strictdoc",
@@ -31,7 +31,9 @@ module.exports = grammar({
         optional(field("config", $.document_config)),
         optional(field("view", $.document_view)),
         optional(field("grammar", $.document_grammar)),
-        // field("section_contents", repeat($.section_or_requirement)),
+        optional(
+          field("section_and_requirement_list", $.section_or_requirement_list),
+        ),
         optional($._eof),
       ),
 
@@ -41,6 +43,6 @@ module.exports = grammar({
     ...document_metadata_rules,
     ...type_system_rules,
     ...common_rules,
-    // ...section_or_requirement_rules,
+    ...section_or_requirement_rules,
   },
 });

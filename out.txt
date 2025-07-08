@@ -1,4 +1,4 @@
-(source_file [0, 0] - [44, 0]
+(source_file [0, 0] - [40, 0]
   mid: (single_line_string [1, 5] - [1, 37])
   title: (single_line_string [2, 7] - [2, 17])
   config: (document_config [3, 0] - [13, 0]
@@ -24,8 +24,8 @@
           (document_custom_metadata_key_value_pair [12, 2] - [12, 12]
             key: (document_custom_metadata_key [12, 2] - [12, 6])
             value: (single_line_string [12, 8] - [12, 12]))))))
-  grammar: (document_grammar [13, 0] - [44, 0]
-    (grammar_elements [15, 0] - [44, 0]
+  grammar: (document_grammar [13, 0] - [31, 0]
+    (grammar_elements [15, 0] - [31, 0]
       (grammar_element [16, 0] - [31, 0]
         requirement_type: (requirement_type [16, 7] - [16, 14])
         properties: (grammar_properties [17, 0] - [21, 0]
@@ -58,27 +58,13 @@
                 (choice_option [29, 29] - [29, 30])
                 (choice_option [29, 32] - [29, 33])))
             (grammar_field_required [30, 0] - [31, 0]
-              value: (boolean_choice [30, 14] - [30, 18])))))
-      (grammar_element [31, 0] - [44, 0]
-        requirement_type: (requirement_type [31, 7] - [31, 11])
-        properties: (grammar_properties [32, 0] - [34, 0]
-          (grammar_property_view_style [33, 0] - [34, 0]
-            (style_choice [33, 16] - [33, 25])))
-        grammar_fields: (grammar_fields [34, 0] - [41, 0]
-          (grammar_field [35, 0] - [38, 0]
-            (grammar_field_title [35, 0] - [36, 0]
-              title: (field_name [35, 11] - [35, 14]))
-            (grammar_field_string [36, 0] - [37, 0])
-            (grammar_field_required [37, 0] - [38, 0]
-              value: (boolean_choice [37, 14] - [37, 18])))
-          (grammar_field [38, 0] - [41, 0]
-            (grammar_field_title [38, 0] - [39, 0]
-              title: (field_name [38, 11] - [38, 20]))
-            (grammar_field_string [39, 0] - [40, 0])
-            (grammar_field_required [40, 0] - [41, 0]
-              value: (boolean_choice [40, 14] - [40, 18]))))
-        grammar_relations: (grammar_relations [41, 0] - [44, 0]
-          (grammar_relation [42, 0] - [43, 0]
-            (grammar_relation_parent [42, 0] - [43, 0]))
-          (grammar_relation [43, 0] - [44, 0]
-            (grammar_relation_file [43, 0] - [44, 0])))))))
+              value: (boolean_choice [30, 14] - [30, 18])))))))
+  section_and_requirement_list: (section_or_requirement_list [31, 0] - [40, 0]
+    (section_or_requirement [31, 0] - [34, 0]
+      (document_from_file [32, 0] - [34, 0]
+        path: (single_line_string [33, 6] - [33, 20])))
+    (section_or_requirement [34, 0] - [40, 0]
+      (sdoc_section [35, 0] - [40, 0]
+        (section_body [36, 0] - [39, 0]
+          mid: (single_line_string [36, 5] - [36, 37])
+          title: (single_line_string [37, 7] - [37, 19]))))))

@@ -255,6 +255,22 @@
     }
   },
   {
+    "type": "document_from_file",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "document_grammar",
     "named": true,
     "fields": {},
@@ -753,6 +769,121 @@
     "fields": {}
   },
   {
+    "type": "sdoc_section",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "section_body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "section_body",
+    "named": true,
+    "fields": {
+      "custom_level": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      },
+      "mid": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      },
+      "requirement_prefix": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      },
+      "title": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "single_line_string",
+            "named": true
+          }
+        ]
+      },
+      "uid": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "uid_string",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "section_or_requirement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "section_or_requirement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "document_from_file",
+          "named": true
+        },
+        {
+          "type": "sdoc_section",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "section_or_requirement_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "section_or_requirement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -783,6 +914,16 @@
         "types": [
           {
             "type": "single_line_string",
+            "named": true
+          }
+        ]
+      },
+      "section_and_requirement_list": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "section_or_requirement_list",
             "named": true
           }
         ]
@@ -1098,6 +1239,10 @@
     "named": false
   },
   {
+    "type": "FILE: ",
+    "named": false
+  },
+  {
     "type": "False",
     "named": false
   },
@@ -1119,6 +1264,10 @@
   },
   {
     "type": "LAYOUT: ",
+    "named": false
+  },
+  {
+    "type": "LEVEL: ",
     "named": false
   },
   {
@@ -1226,11 +1375,23 @@
     "named": false
   },
   {
+    "type": "[/SECTION]",
+    "named": false
+  },
+  {
     "type": "[DOCUMENT]",
     "named": false
   },
   {
+    "type": "[DOCUMENT_FROM_FILE]",
+    "named": false
+  },
+  {
     "type": "[GRAMMAR]",
+    "named": false
+  },
+  {
+    "type": "[SECTION]",
     "named": false
   },
   {

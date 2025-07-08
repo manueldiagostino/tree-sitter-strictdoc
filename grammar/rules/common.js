@@ -1,6 +1,9 @@
 const REGEX_UID_PATTERN = /[\w]+[\w()\-\/\.:_]*/;
 
 module.exports = {
+  reserved_keyword: () =>
+    choice("DOCUMENT", "GRAMMAR", "SECTION", "DOCUMENT_FROM_FILE"),
+
   single_line_string: ($) => /[^\s][^\n\r]*/,
   multi_line_string: ($) =>
     seq(">>>", "\n", field("text_part", $.text_part), "^<<<"),
