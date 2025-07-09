@@ -7,7 +7,17 @@ module.exports = {
   DOCUMENT_FROM_FILE: ($) => "DOCUMENT_FROM_FILE",
 
   single_line_string: ($) => /[^\s][^\n\r]*/,
-  multi_line_string: ($) => seq(">>>", "\n", $.text_part, "<<<"),
+  multi_line_string: ($) =>
+    seq(
+      $.multiline_opening_token,
+      "\n",
+      $.text_part,
+      $.multiline_closing_token,
+      "\n",
+    ),
+
+  multiline_opening_token: ($) => token(">>>"),
+  multiline_closing_token: ($) => token("<<<"),
 
   anchor: ($) =>
     seq(

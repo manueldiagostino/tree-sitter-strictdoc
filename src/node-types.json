@@ -830,15 +830,28 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "multiline_closing_token",
+          "named": true
+        },
+        {
+          "type": "multiline_opening_token",
+          "named": true
+        },
         {
           "type": "text_part",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "new_line",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "normal_string",
@@ -884,29 +897,35 @@
     }
   },
   {
+    "type": "sdoc_composite_closing",
+    "named": true,
+    "fields": {
+      "node_type_closing": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "requirement_type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "new_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "sdoc_composite_node",
     "named": true,
     "fields": {
-      "node_type_close": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "requirement_type",
-            "named": true
-          }
-        ]
-      },
-      "node_type_open": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "requirement_type",
-            "named": true
-          }
-        ]
-      },
       "section_and_requirement_list": {
         "multiple": false,
         "required": false,
@@ -923,11 +942,49 @@
       "required": true,
       "types": [
         {
+          "type": "new_line",
+          "named": true
+        },
+        {
           "type": "reference",
           "named": true
         },
         {
+          "type": "sdoc_composite_closing",
+          "named": true
+        },
+        {
+          "type": "sdoc_composite_opening",
+          "named": true
+        },
+        {
           "type": "sdoc_node_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sdoc_composite_opening",
+    "named": true,
+    "fields": {
+      "node_type_opening": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "requirement_type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "new_line",
           "named": true
         }
       ]
@@ -1105,11 +1162,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "document_from_file",
+          "named": true
+        },
+        {
+          "type": "new_line",
           "named": true
         },
         {
@@ -1137,10 +1198,6 @@
       "types": [
         {
           "type": "section_or_requirement",
-          "named": true
-        },
-        {
-          "type": "section_or_requirement_list",
           "named": true
         }
       ]
@@ -1540,14 +1597,6 @@
     "named": false
   },
   {
-    "type": "<<<",
-    "named": false
-  },
-  {
-    "type": ">>>",
-    "named": false
-  },
-  {
     "type": "AUTO_LEVELS",
     "named": false
   },
@@ -1809,6 +1858,14 @@
   },
   {
     "type": "field_name",
+    "named": true
+  },
+  {
+    "type": "multiline_closing_token",
+    "named": true
+  },
+  {
+    "type": "multiline_opening_token",
     "named": true
   },
   {

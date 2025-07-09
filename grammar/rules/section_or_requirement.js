@@ -1,17 +1,14 @@
 module.exports = {
-  section_or_requirement_list: ($) =>
-    prec.left(
-      seq($.section_or_requirement, optional($.section_or_requirement_list)),
-    ),
+  section_or_requirement_list: ($) => repeat1($.section_or_requirement),
 
   section_or_requirement: ($) =>
     seq(
-      "\n",
+      $.new_line,
       choice(
-        $.sdoc_section,
-        $.sdoc_composite_node,
         $.sdoc_node,
+        $.sdoc_section,
         $.document_from_file,
+        $.sdoc_composite_node,
       ),
     ),
 
@@ -23,10 +20,17 @@ module.exports = {
       optional(seq("MID", ":", " ", field("mid", $.single_line_string), "\n")),
       optional(seq("UID", ":", " ", field("uid", $.uid_string), "\n")),
       optional(
-        seq("LEVEL", ":", " ", field("custom_level", $.single_line_string), "\n"),
+        seq(
+          "LEVEL",
+          ":",
+          " ",
+          field("custom_level", $.single_line_string),
+          "\n",
+        ),
       ),
       "TITLE",
-      ":", " ",
+      ":",
+      " ",
       field("title", $.single_line_string),
       "\n",
       optional(
@@ -45,7 +49,8 @@ module.exports = {
       "[DOCUMENT_FROM_FILE]",
       "\n",
       "FILE",
-      ":", " ",
+      ":",
+      " ",
       field("path", $.single_line_string),
       "\n",
     ),
@@ -53,7 +58,7 @@ module.exports = {
   sdoc_node: ($) =>
     seq(
       "[",
-      prec.right(1, field("node_type", $.requirement_type)),
+      prec.left(1, field("node_type", $.requirement_type)),
       "]",
       "\n",
       repeat(field("fields", $.sdoc_node_field)),
@@ -64,20 +69,25 @@ module.exports = {
 
   sdoc_composite_node: ($) =>
     seq(
-      "[[",
-      field("node_type_open", $.requirement_type),
-      "]]",
-      "\n",
+      $.sdoc_composite_opening,
       repeat1($.sdoc_node_field),
       optional(seq("RELATIONS:", "\n", repeat1($.reference))),
       optional(
         field("section_and_requirement_list", $.section_or_requirement_list),
       ),
-      "\n",
+      $.new_line,
+      $.sdoc_composite_closing,
+    ),
+
+  sdoc_composite_opening: ($) =>
+    seq("[[", field("node_type_opening", $.requirement_type), "]]", $.new_line),
+
+  sdoc_composite_closing: ($) =>
+    seq(
       "[[/",
-      field("node_type_close", $.requirement_type),
+      field("node_type_closing", $.requirement_type),
       "]]",
-      "\n",
+      $.new_line,
     ),
 
   sdoc_node_field: ($) =>
@@ -87,10 +97,8 @@ module.exports = {
       seq(
         field("field_name", $.field_name),
         ":",
-        choice(
-          seq(" ", $.single_line_text_part),
-          seq(" ", $.multi_line_string, "\n"),
-        ),
+        " ",
+        choice($.single_line_text_part, $.multi_line_string),
       ),
     ),
 

@@ -2525,8 +2525,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": ">>>"
+          "type": "SYMBOL",
+          "name": "multiline_opening_token"
         },
         {
           "type": "STRING",
@@ -2537,10 +2537,28 @@
           "name": "text_part"
         },
         {
+          "type": "SYMBOL",
+          "name": "multiline_closing_token"
+        },
+        {
           "type": "STRING",
-          "value": "<<<"
+          "value": "\n"
         }
       ]
+    },
+    "multiline_opening_token": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": ">>>"
+      }
+    },
+    "multiline_closing_token": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "<<<"
+      }
     },
     "anchor": {
       "type": "SEQ",
@@ -2723,55 +2741,37 @@
       "value": "\u0000"
     },
     "section_or_requirement_list": {
-      "type": "PREC_LEFT",
-      "value": 0,
+      "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "section_or_requirement"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "section_or_requirement_list"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "section_or_requirement"
       }
     },
     "section_or_requirement": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "\n"
+          "type": "SYMBOL",
+          "name": "new_line"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "sdoc_section"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "sdoc_composite_node"
-            },
-            {
-              "type": "SYMBOL",
               "name": "sdoc_node"
             },
             {
               "type": "SYMBOL",
+              "name": "sdoc_section"
+            },
+            {
+              "type": "SYMBOL",
               "name": "document_from_file"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "sdoc_composite_node"
             }
           ]
         }
@@ -3062,7 +3062,7 @@
           "value": "["
         },
         {
-          "type": "PREC_RIGHT",
+          "type": "PREC_LEFT",
           "value": 1,
           "content": {
             "type": "FIELD",
@@ -3130,24 +3130,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "[["
-        },
-        {
-          "type": "FIELD",
-          "name": "node_type_open",
-          "content": {
-            "type": "SYMBOL",
-            "name": "requirement_type"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "]]"
-        },
-        {
-          "type": "STRING",
-          "value": "\n"
+          "type": "SYMBOL",
+          "name": "sdoc_composite_opening"
         },
         {
           "type": "REPEAT1",
@@ -3201,16 +3185,25 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "\n"
+          "type": "SYMBOL",
+          "name": "new_line"
         },
         {
+          "type": "SYMBOL",
+          "name": "sdoc_composite_closing"
+        }
+      ]
+    },
+    "sdoc_composite_opening": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "STRING",
-          "value": "[[/"
+          "value": "[["
         },
         {
           "type": "FIELD",
-          "name": "node_type_close",
+          "name": "node_type_opening",
           "content": {
             "type": "SYMBOL",
             "name": "requirement_type"
@@ -3221,8 +3214,33 @@
           "value": "]]"
         },
         {
+          "type": "SYMBOL",
+          "name": "new_line"
+        }
+      ]
+    },
+    "sdoc_composite_closing": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "STRING",
-          "value": "\n"
+          "value": "[[/"
+        },
+        {
+          "type": "FIELD",
+          "name": "node_type_closing",
+          "content": {
+            "type": "SYMBOL",
+            "name": "requirement_type"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]]"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "new_line"
         }
       ]
     },
@@ -3303,37 +3321,19 @@
               "value": ":"
             },
             {
+              "type": "STRING",
+              "value": " "
+            },
+            {
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": " "
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "single_line_text_part"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "single_line_text_part"
                 },
                 {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": " "
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "multi_line_string"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "\n"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "multi_line_string"
                 }
               ]
             }
@@ -3365,7 +3365,11 @@
       "value": "\r"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "section_or_requirement_list"
+    ]
+  ],
   "precedences": [
     [
       {
@@ -3375,6 +3379,16 @@
       {
         "type": "SYMBOL",
         "name": "sdoc_node"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "section_or_requirement"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "new_line"
       }
     ]
   ],

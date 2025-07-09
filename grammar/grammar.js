@@ -18,16 +18,23 @@ const section_or_requirement_rules = require("./rules/section_or_requirement");
 module.exports = grammar({
   name: "strictdoc",
   extras: (_) => ["\r"],
-  precedences: ($) => [[$.sdoc_section, $.sdoc_node]],
+  precedences: ($) => [
+    [$.sdoc_section, $.sdoc_node],
+    [$.section_or_requirement, $.new_line],
+  ],
+  conflicts: ($) => [[$.section_or_requirement_list]],
 
   rules: {
     source_file: ($) =>
       seq(
         "[DOCUMENT]",
         "\n",
-        optional(seq("MID", ":", " ", field("mid", $.single_line_string), "\n")),
+        optional(
+          seq("MID", ":", " ", field("mid", $.single_line_string), "\n"),
+        ),
         "TITLE",
-        ":", " ",
+        ":",
+        " ",
         field("title", $.single_line_string),
         "\n",
         optional(field("config", $.document_config)),
