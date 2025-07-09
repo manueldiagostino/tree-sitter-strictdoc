@@ -61,6 +61,21 @@
     "fields": {}
   },
   {
+    "type": "date",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "single_line_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "default_view",
     "named": true,
     "fields": {},
@@ -278,7 +293,7 @@
         "required": true,
         "types": [
           {
-            "type": "single_line_string",
+            "type": "date",
             "named": true
           }
         ]
@@ -294,7 +309,7 @@
         "required": true,
         "types": [
           {
-            "type": "single_line_string",
+            "type": "file_path",
             "named": true
           }
         ]
@@ -402,6 +417,21 @@
     "type": "file_entry_format",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "file_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "single_line_string",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "file_reference",
@@ -794,7 +824,18 @@
   {
     "type": "import_from_file",
     "named": true,
-    "fields": {}
+    "fields": {
+      "import_path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "file_path",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "in_toc_tag",
@@ -1926,7 +1967,7 @@
     "named": false
   },
   {
-    "type": "[LINK",
+    "type": "[LINK: ",
     "named": false
   },
   {

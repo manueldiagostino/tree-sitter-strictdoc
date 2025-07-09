@@ -5,8 +5,6 @@ module.exports = {
 
   requirement_type: ($) => /[A-Z]+[_A-Z]*/,
 
-  reserved_keyword: () => choice("DOCUMENT", "GRAMMAR"),
-
   reference: ($) =>
     choice($.parent_req_reference, $.child_req_reference, $.file_reference),
 

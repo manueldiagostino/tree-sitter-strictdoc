@@ -28,7 +28,7 @@ module.exports = {
       "\n",
     ),
 
-  inline_link: ($) => seq("[LINK", ":", " ", field("value", REGEX_UID), "]"),
+  inline_link: ($) => seq("[LINK: ", field("value", REGEX_UID), "]"),
 
   text_part: ($) => repeat1(choice($.anchor, $.normal_string)),
   normal_string: ($) =>
@@ -38,6 +38,8 @@ module.exports = {
 
   single_line_normal_string: ($) =>
     seq(repeat(choice($.inline_link, token(/[^\n]/))), "\n"),
+
+  file_path: ($) => $.single_line_string,
 
   uid_string: ($) => REGEX_UID,
   field_name: ($) => /[A-Z][_A-Z0-9]*/,

@@ -8,7 +8,7 @@ module.exports = {
     ),
 
   import_from_file: ($) =>
-    seq("IMPORT_FROM_FILE", ":", " ", field("import_path", /.*/), "\n"),
+    seq("IMPORT_FROM_FILE", ":", " ", field("import_path", $.file_path), "\n"),
 
   grammar_elements: ($) =>
     seq("ELEMENTS", ":", "\n", repeat1($.grammar_element)),

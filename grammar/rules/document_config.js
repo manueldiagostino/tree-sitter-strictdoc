@@ -2,7 +2,8 @@ module.exports = {
   document_config: ($) =>
     seq(
       "UID",
-      ":", " ",
+      ":",
+      " ",
       field("uid", $.uid_string),
       "\n",
       optional($.document_version),
@@ -16,12 +17,16 @@ module.exports = {
 
   document_version: ($) =>
     seq("VERSION", ":", " ", field("version", $.single_line_string), "\n"),
-  document_date: ($) =>
-    seq("DATE", ":", " ", field("date", $.single_line_string), "\n"),
+
+  document_date: ($) => seq("DATE", ":", " ", field("date", $.date), "\n"),
+
+  date: ($) => $.single_line_string,
+
   document_classification: ($) =>
     seq(
       "CLASSIFICATION",
-      ":", " ",
+      ":",
+      " ",
       field("classification", $.single_line_string),
       "\n",
     ),
@@ -54,7 +59,8 @@ module.exports = {
   layout: ($) => seq("  ", "LAYOUT", ":", " ", $.layout_choice, "\n"),
   view_style: ($) =>
     seq("  ", $._view_style_choice, ":", " ", $.style_choice, "\n"),
-  in_toc_tag: ($) => seq("  ", $._in_toc_choice, ":", " ", $.boolean_choice, "\n"),
+  in_toc_tag: ($) =>
+    seq("  ", $._in_toc_choice, ":", " ", $.boolean_choice, "\n"),
   default_view: ($) =>
     seq("  ", "DEFAULT_VIEW", ":", " ", $.single_line_string, "\n"),
 

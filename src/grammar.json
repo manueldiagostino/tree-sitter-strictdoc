@@ -347,7 +347,7 @@
           "name": "date",
           "content": {
             "type": "SYMBOL",
-            "name": "single_line_string"
+            "name": "date"
           }
         },
         {
@@ -355,6 +355,10 @@
           "value": "\n"
         }
       ]
+    },
+    "date": {
+      "type": "SYMBOL",
+      "name": "single_line_string"
     },
     "document_classification": {
       "type": "SEQ",
@@ -1220,8 +1224,8 @@
           "type": "FIELD",
           "name": "import_path",
           "content": {
-            "type": "PATTERN",
-            "value": ".*"
+            "type": "SYMBOL",
+            "name": "file_path"
           }
         },
         {
@@ -2179,19 +2183,6 @@
       "type": "PATTERN",
       "value": "[A-Z]+[_A-Z]*"
     },
-    "reserved_keyword": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "DOCUMENT"
-        },
-        {
-          "type": "STRING",
-          "value": "GRAMMAR"
-        }
-      ]
-    },
     "reference": {
       "type": "CHOICE",
       "members": [
@@ -2837,15 +2828,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "[LINK"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "STRING",
-          "value": " "
+          "value": "[LINK: "
         },
         {
           "type": "FIELD",
@@ -2945,6 +2928,10 @@
           "value": "\n"
         }
       ]
+    },
+    "file_path": {
+      "type": "SYMBOL",
+      "name": "single_line_string"
     },
     "uid_string": {
       "type": "PATTERN",
@@ -3267,7 +3254,7 @@
           "name": "path",
           "content": {
             "type": "SYMBOL",
-            "name": "single_line_string"
+            "name": "file_path"
           }
         },
         {

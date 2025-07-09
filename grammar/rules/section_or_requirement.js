@@ -51,7 +51,7 @@ module.exports = {
       "FILE",
       ":",
       " ",
-      field("path", $.single_line_string),
+      field("path", $.file_path),
       "\n",
     ),
 
