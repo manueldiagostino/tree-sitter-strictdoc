@@ -90,7 +90,7 @@
 (single_line_string) @string
 (multi_line_string) @string
 (single_line_text_part) @string
-[ (uid_string) (req_reference_value_id) ] @string.special_symbol
+[ (uid_string) (req_reference_value_id) ] @string.special.symbol
 
 ;; Fields
 (document_custom_metadata_key) @property
