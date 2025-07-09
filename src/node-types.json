@@ -32,7 +32,28 @@
   {
     "type": "child_req_reference",
     "named": true,
-    "fields": {}
+    "fields": {
+      "ref_uid": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "req_reference_value_id",
+            "named": true
+          }
+        ]
+      },
+      "role": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "role_id",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "choice_option",
@@ -392,6 +413,16 @@
         "types": [
           {
             "type": "file_entry",
+            "named": true
+          }
+        ]
+      },
+      "role": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "role_id",
             "named": true
           }
         ]
@@ -871,7 +902,28 @@
   {
     "type": "parent_req_reference",
     "named": true,
-    "fields": {}
+    "fields": {
+      "ref_uid": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "req_reference_value_id",
+            "named": true
+          }
+        ]
+      },
+      "role": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "role_id",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "reference",
@@ -897,30 +949,9 @@
     }
   },
   {
-    "type": "sdoc_composite_closing",
+    "type": "req_reference_value_id",
     "named": true,
-    "fields": {
-      "node_type_closing": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "requirement_type",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "new_line",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "sdoc_composite_node",
@@ -950,11 +981,11 @@
           "named": true
         },
         {
-          "type": "sdoc_composite_closing",
+          "type": "sdoc_composite_node_closing",
           "named": true
         },
         {
-          "type": "sdoc_composite_opening",
+          "type": "sdoc_composite_node_opening",
           "named": true
         },
         {
@@ -965,15 +996,15 @@
     }
   },
   {
-    "type": "sdoc_composite_opening",
+    "type": "sdoc_composite_node_closing",
     "named": true,
     "fields": {
-      "node_type_opening": {
+      "node_type_closing": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "requirement_type",
+            "type": "sdoc_composite_node_type_name",
             "named": true
           }
         ]
@@ -985,6 +1016,47 @@
       "types": [
         {
           "type": "new_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sdoc_composite_node_opening",
+    "named": true,
+    "fields": {
+      "node_type_opening": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "sdoc_composite_node_type_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "new_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sdoc_composite_node_type_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "requirement_type",
           "named": true
         }
       ]
@@ -1004,16 +1076,6 @@
           }
         ]
       },
-      "node_type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "requirement_type",
-            "named": true
-          }
-        ]
-      },
       "relations": {
         "multiple": true,
         "required": false,
@@ -1024,6 +1086,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "sdoc_node_opening",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1071,6 +1143,47 @@
         },
         {
           "type": "single_line_text_part",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sdoc_node_opening",
+    "named": true,
+    "fields": {
+      "node_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "sdoc_node_type_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "new_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sdoc_node_type_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "requirement_type",
           "named": true
         }
       ]
@@ -1477,27 +1590,7 @@
     "named": false
   },
   {
-    "type": "      PLACEMENT",
-    "named": false
-  },
-  {
-    "type": "    HUMAN_TITLE",
-    "named": false
-  },
-  {
-    "type": "    IS_COMPOSITE: ",
-    "named": false
-  },
-  {
-    "type": "    PREFIX",
-    "named": false
-  },
-  {
-    "type": "    ROLE",
-    "named": false
-  },
-  {
-    "type": "    VIEW_STYLE",
+    "type": "      ",
     "named": false
   },
   {
@@ -1505,47 +1598,7 @@
     "named": false
   },
   {
-    "type": "  CLASS",
-    "named": false
-  },
-  {
-    "type": "  FORMAT",
-    "named": false
-  },
-  {
-    "type": "  FUNCTION",
-    "named": false
-  },
-  {
-    "type": "  LINE_RANGE: ",
-    "named": false
-  },
-  {
-    "type": "  NAME",
-    "named": false
-  },
-  {
     "type": "  RELATIONS:",
-    "named": false
-  },
-  {
-    "type": "  ROLE",
-    "named": false
-  },
-  {
-    "type": "  TAGS",
-    "named": false
-  },
-  {
-    "type": "  VALUE",
-    "named": false
-  },
-  {
-    "type": " NAME: ",
-    "named": false
-  },
-  {
-    "type": " OBJECT_TYPE",
     "named": false
   },
   {
@@ -1573,27 +1626,7 @@
     "named": false
   },
   {
-    "type": "- ",
-    "named": false
-  },
-  {
-    "type": "- ID: ",
-    "named": false
-  },
-  {
     "type": ":",
-    "named": false
-  },
-  {
-    "type": ": Child",
-    "named": false
-  },
-  {
-    "type": ": File",
-    "named": false
-  },
-  {
-    "type": ": Parent",
     "named": false
   },
   {
@@ -1601,7 +1634,15 @@
     "named": false
   },
   {
+    "type": "CLASS",
+    "named": false
+  },
+  {
     "type": "CLASSIFICATION",
+    "named": false
+  },
+  {
+    "type": "Child",
     "named": false
   },
   {
@@ -1617,7 +1658,7 @@
     "named": false
   },
   {
-    "type": "ELEMENTS:\n",
+    "type": "ELEMENTS",
     "named": false
   },
   {
@@ -1633,7 +1674,19 @@
     "named": false
   },
   {
+    "type": "FORMAT",
+    "named": false
+  },
+  {
+    "type": "FUNCTION",
+    "named": false
+  },
+  {
     "type": "False",
+    "named": false
+  },
+  {
+    "type": "File",
     "named": false
   },
   {
@@ -1645,7 +1698,19 @@
     "named": false
   },
   {
+    "type": "HUMAN_TITLE",
+    "named": false
+  },
+  {
+    "type": "ID",
+    "named": false
+  },
+  {
     "type": "IMPORT_FROM_FILE",
+    "named": false
+  },
+  {
+    "type": "IS_COMPOSITE",
     "named": false
   },
   {
@@ -1658,6 +1723,10 @@
   },
   {
     "type": "LEVEL",
+    "named": false
+  },
+  {
+    "type": "LINE_RANGE",
     "named": false
   },
   {
@@ -1677,11 +1746,19 @@
     "named": false
   },
   {
+    "type": "NAME",
+    "named": false
+  },
+  {
     "type": "NODE_IN_TOC",
     "named": false
   },
   {
     "type": "Narrative",
+    "named": false
+  },
+  {
+    "type": "OBJECT_TYPE",
     "named": false
   },
   {
@@ -1697,11 +1774,19 @@
     "named": false
   },
   {
+    "type": "PLACEMENT",
+    "named": false
+  },
+  {
     "type": "PREFIX",
     "named": false
   },
   {
     "type": "PROPERTIES",
+    "named": false
+  },
+  {
+    "type": "Parent",
     "named": false
   },
   {
@@ -1713,7 +1798,7 @@
     "named": false
   },
   {
-    "type": "RELATIONS:",
+    "type": "RELATIONS",
     "named": false
   },
   {
@@ -1730,6 +1815,10 @@
   },
   {
     "type": "REQ_PREFIX",
+    "named": false
+  },
+  {
+    "type": "ROLE",
     "named": false
   },
   {
@@ -1754,6 +1843,10 @@
   },
   {
     "type": "TAG",
+    "named": false
+  },
+  {
+    "type": "TAGS",
     "named": false
   },
   {
@@ -1785,11 +1878,15 @@
     "named": false
   },
   {
+    "type": "VALUE",
+    "named": false
+  },
+  {
     "type": "VERSION",
     "named": false
   },
   {
-    "type": "VIEWS:",
+    "type": "VIEWS",
     "named": false
   },
   {
@@ -1870,6 +1967,10 @@
   },
   {
     "type": "requirement_type",
+    "named": true
+  },
+  {
+    "type": "role_id",
     "named": true
   },
   {

@@ -9,8 +9,11 @@
   "[SECTION]"
   "[/SECTION]"
   "[DOCUMENT_FROM_FILE]"
+  (sdoc_node_opening)
+  (sdoc_composite_node_opening)
+  (sdoc_composite_node_closing)
+  (sdoc_composite_node_type_name)
 ] @keyword
-(sdoc_composite_node) @keyword
 
 [
   "TITLE"
@@ -38,7 +41,11 @@
   "TYPE"
   "REQUIRED"
   "FILE"
-] @constant.builtin
+  "VALUE"
+  "ROLE"
+  "FORMAT"
+  "FIELDS"
+] @type.builtin
 
 ;; Operators
 [
@@ -57,8 +64,6 @@
 (boolean_choice) @boolean
 
 ;; Requirement types and file formats
-(requirement_type) @type
-(file_entry_format) @type
 
 ;; Config option values
 [
@@ -75,22 +80,26 @@
   "Narrative"
   "Table"
   "Zebra"
-] @type
+  "Parent"
+  "Child"
+  "File"
+] @constant.builtin
 
 
 ;; Strings
 (single_line_string) @string
 (multi_line_string) @string
-(uid_string) @string
 (single_line_text_part) @string
+[ (uid_string) (req_reference_value_id) ] @string.special_symbol
 
-;; Field names
-(field_name) @property
+;; Fields
+(document_custom_metadata_key) @property
+[ "RELATIONS" (field_name) ] @variable.member
 
 ;; Anchors and links
 (anchor) @annotation
 (inline_link) @link
 
-;; Numeric literals
-; (number) @number
-
+[
+ (role_id)
+] @variable

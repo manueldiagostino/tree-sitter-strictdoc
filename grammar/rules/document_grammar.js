@@ -10,11 +10,13 @@ module.exports = {
   import_from_file: ($) =>
     seq("IMPORT_FROM_FILE", ":", " ", field("import_path", /.*/), "\n"),
 
-  grammar_elements: ($) => seq("ELEMENTS:\n", repeat1($.grammar_element)),
+  grammar_elements: ($) =>
+    seq("ELEMENTS", ":", "\n", repeat1($.grammar_element)),
 
   grammar_element: ($) =>
     seq(
-      "- ",
+      "-",
+      " ",
       "TAG",
       ":",
       " ",
@@ -37,13 +39,13 @@ module.exports = {
     ),
 
   grammar_property_is_composite: ($) =>
-    seq("    IS_COMPOSITE: ", $.boolean_choice, "\n"),
+    seq("    ", "IS_COMPOSITE", ":", " ", $.boolean_choice, "\n"),
 
   grammar_property_prefix: ($) =>
-    seq("    PREFIX", ":", " ", $.single_line_string, "\n"),
+    seq("    ", "PREFIX", ":", " ", $.single_line_string, "\n"),
 
   grammar_property_view_style: ($) =>
-    seq("    VIEW_STYLE", ":", " ", $.style_choice, "\n"),
+    seq("    ", "VIEW_STYLE", ":", " ", $.style_choice, "\n"),
 
   grammar_fields: ($) =>
     seq("  ", "FIELDS", ":", "\n", repeat1($.grammar_field)),
@@ -61,20 +63,25 @@ module.exports = {
     ),
 
   grammar_field_title: ($) =>
-    seq(
-      "  ", "-", " ",
-      "TITLE",
-      ":",
-      " ",
-      field("title", $.field_name),
-      "\n",
-      optional(
-        seq(
-          "    HUMAN_TITLE",
-          ":",
-          " ",
-          field("human_title", $.single_line_string),
-          "\n",
+    prec.left(
+      seq(
+        "  ",
+        "-",
+        " ",
+        "TITLE",
+        ":",
+        " ",
+        field("title", $.field_name),
+        "\n",
+        optional(
+          seq(
+            "    ",
+            "HUMAN_TITLE",
+            ":",
+            " ",
+            field("human_title", $.single_line_string),
+            "\n",
+          ),
         ),
       ),
     ),
@@ -123,13 +130,18 @@ module.exports = {
 
   grammar_relation_parent: ($) =>
     seq(
-      "  ", "-", " ",
+      "  ",
+      "-",
+      " ",
       "TYPE",
-      ": Parent",
+      ":",
+      " ",
+      "Parent",
       "\n",
       optional(
         seq(
-          "    ROLE",
+          "    ",
+          "ROLE",
           ":",
           " ",
           field("relation_role", $.single_line_string),
@@ -140,13 +152,18 @@ module.exports = {
 
   grammar_relation_child: ($) =>
     seq(
-      "  ", "-", " ",
+      "  ",
+      "-",
+      " ",
       "TYPE",
-      ": Child",
+      ":",
+      " ",
+      "Child",
       "\n",
       optional(
         seq(
-          "    ROLE",
+          "    ",
+          "ROLE",
           ":",
           " ",
           field("relation_role", $.single_line_string),
@@ -157,13 +174,18 @@ module.exports = {
 
   grammar_relation_file: ($) =>
     seq(
-      "  ", "-", " ",
+      "  ",
+      "-",
+      " ",
       "TYPE",
-      ": File",
+      ":",
+      " ",
+      "File",
       "\n",
       optional(
         seq(
-          "    ROLE",
+          "    ",
+          "ROLE",
           ":",
           " ",
           field("relation_role", $.single_line_string),
