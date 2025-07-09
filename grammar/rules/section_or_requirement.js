@@ -82,18 +82,13 @@ module.exports = {
 
   sdoc_node_field: ($) =>
     choice(
-      seq(
-        field("field_name", "MID"),
-        ": ",
-        field("parts", $.single_line_string),
-        "\n",
-      ),
-      seq(field("field_name", "UID"), ": ", field("parts", $.uid_string), "\n"),
+      seq("MID: ", field("mid", $.single_line_string), "\n"),
+      seq("UID: ", field("uid", $.uid_string), "\n"),
       seq(
         field("field_name", $.field_name),
         ":",
         choice(
-          seq(" ", repeat1($.single_line_text_part), "\n"),
+          seq(" ", $.single_line_text_part),
           seq(" >>>\n", $.text_part, "<<<", "\n"),
         ),
       ),

@@ -2,18 +2,7 @@
   {
     "type": "anchor",
     "named": true,
-    "fields": {
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "uid_string",
-            "named": true
-          }
-        ]
-      }
-    }
+    "fields": {}
   },
   {
     "type": "auto_levels",
@@ -832,6 +821,21 @@
     "fields": {}
   },
   {
+    "type": "normal_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "inline_link",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parent_req_reference",
     "named": true,
     "fields": {}
@@ -915,30 +919,28 @@
     "fields": {
       "field_name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
-          {
-            "type": "MID",
-            "named": false
-          },
-          {
-            "type": "UID",
-            "named": false
-          },
           {
             "type": "field_name",
             "named": true
           }
         ]
       },
-      "parts": {
+      "mid": {
         "multiple": false,
         "required": false,
         "types": [
           {
             "type": "single_line_string",
             "named": true
-          },
+          }
+        ]
+      },
+      "uid": {
+        "multiple": false,
+        "required": false,
+        "types": [
           {
             "type": "uid_string",
             "named": true
@@ -947,7 +949,7 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -1085,19 +1087,34 @@
     }
   },
   {
+    "type": "single_line_normal_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "inline_link",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "single_line_text_part",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "anchor",
           "named": true
         },
         {
-          "type": "inline_link",
+          "type": "single_line_normal_string",
           "named": true
         }
       ]
@@ -1185,14 +1202,6 @@
       "types": [
         {
           "type": "anchor",
-          "named": true
-        },
-        {
-          "type": "exception_symbol",
-          "named": true
-        },
-        {
-          "type": "inline_link",
           "named": true
         },
         {
@@ -1583,10 +1592,6 @@
     "named": false
   },
   {
-    "type": "MID",
-    "named": false
-  },
-  {
     "type": "MID: ",
     "named": false
   },
@@ -1671,10 +1676,6 @@
     "named": false
   },
   {
-    "type": "UID",
-    "named": false
-  },
-  {
     "type": "UID: ",
     "named": false
   },
@@ -1692,10 +1693,6 @@
   },
   {
     "type": "Website",
-    "named": false
-  },
-  {
-    "type": "Z",
     "named": false
   },
   {
@@ -1751,19 +1748,11 @@
     "named": true
   },
   {
-    "type": "exception_symbol",
-    "named": true
-  },
-  {
     "type": "field_name",
     "named": true
   },
   {
     "type": "grammar_field_string",
-    "named": true
-  },
-  {
-    "type": "normal_string",
     "named": true
   },
   {

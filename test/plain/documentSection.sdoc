@@ -46,9 +46,11 @@ This is a normal string, I can write multi line
 strings with symbols "<,<<,[" and also special words such as:
 [ANCHOR] or [LINK].
 
-[ANCHOR: SDOC_UG_LINKS_AND_ANCHORS]
+[ANCHOR: ANCHOR-EXAMPLE]
 
-I'm also able to insert inline_links [LINK: SDOC_UG_LINKS_AND_ANCHORS].
+I'm also able to insert inline_links [LINK: ANCHOR_EXAMPLE].
 <<<
+FIELD_C: [ANCHOR: ANCHOR-EXAMPLE]
+FIELD_D: A single line text part with multiple [LINK: ABC], [LINK: ABCD] inside.
 
 [[/COMPOSITE]]

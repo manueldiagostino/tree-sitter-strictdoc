@@ -7,39 +7,29 @@ module.exports = {
   single_line_string: ($) => /[^\s][^\n\r]*/,
   multi_line_string: ($) => seq(">>>\n", $.text_part, "<<<"),
 
-  text_part: ($) =>
-    prec.left(
-      repeat1(
-        choice(
-          $.anchor,
-          seq(
-            optional($.inline_link),
-            choice($.normal_string, $.exception_symbol),
-          ),
-        ),
-      ),
-    ),
-
-  single_line_text_part: ($) =>
-    choice($.anchor, $.inline_link, token(seq(/[^\s]/, /[^\n]*/))),
-
-  normal_string: ($) => /[^<\[]+/,
-  exception_symbol: ($) => /[<\[]/,
-
-  inline_link: ($) => seq("[LINK: ", field("value", REGEX_UID), "]"),
-
   anchor: ($) =>
     seq(
       "[ANCHOR: ",
-      field("value", $.uid_string),
+      field("value", REGEX_UID),
       optional(seq(",", field("title", /\w+[\s\w+]*/))),
       "]",
-      choice("\Z", "\n"),
+      "\n",
     ),
+
+  inline_link: ($) => seq("[LINK: ", field("value", REGEX_UID), "]"),
+
+  text_part: ($) => repeat1(choice($.anchor, $.normal_string)),
+  normal_string: ($) =>
+    seq(repeat(choice($.inline_link, token(/[^\n]/))), "\n"),
+
+  single_line_text_part: ($) => choice($.anchor, $.single_line_normal_string),
+
+  single_line_normal_string: ($) =>
+    seq(repeat(choice($.inline_link, token(/[^\n]/))), "\n"),
 
   uid_string: ($) => REGEX_UID,
   field_name: ($) => /[A-Z][_A-Z0-9]*/,
   boolean_choice: () => choice("True", "False"),
-  _new_line: ($) => "\n",
+  new_line: ($) => "\n",
   _eof: ($) => "\0",
 };
