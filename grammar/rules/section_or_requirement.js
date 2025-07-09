@@ -10,7 +10,7 @@ module.exports = {
       choice(
         $.sdoc_section,
         $.sdoc_composite_node,
-        // $.sdoc_node,
+        $.sdoc_node,
         $.document_from_file,
       ),
     ),
@@ -48,19 +48,17 @@ module.exports = {
       "\n",
     ),
 
-  //
-  // sdoc_node: ($) =>
-  //   seq(
-  //     "[",
-  //     prec.right(1, field("node_type", $.requirement_type)),
-  //     "]",
-  //     "\n",
-  //     repeat(field("fields", $.sdoc_node_field)),
-  //     optional(
-  //       seq("RELATIONS:", "\n", repeat(field("relations", $.reference))),
-  //     ),
-  //   ),
-  //
+  sdoc_node: ($) =>
+    seq(
+      "[",
+      prec.right(1, field("node_type", $.requirement_type)),
+      "]",
+      "\n",
+      repeat(field("fields", $.sdoc_node_field)),
+      optional(
+        seq("RELATIONS:", "\n", repeat(field("relations", $.reference))),
+      ),
+    ),
 
   sdoc_composite_node: ($) =>
     seq(

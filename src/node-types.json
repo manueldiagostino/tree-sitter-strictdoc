@@ -914,6 +914,42 @@
     }
   },
   {
+    "type": "sdoc_node",
+    "named": true,
+    "fields": {
+      "fields": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "sdoc_node_field",
+            "named": true
+          }
+        ]
+      },
+      "node_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "requirement_type",
+            "named": true
+          }
+        ]
+      },
+      "relations": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "reference",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "sdoc_node_field",
     "named": true,
     "fields": {
@@ -1058,6 +1094,10 @@
         },
         {
           "type": "sdoc_composite_node",
+          "named": true
+        },
+        {
+          "type": "sdoc_node",
           "named": true
         },
         {
@@ -1697,6 +1737,10 @@
   },
   {
     "type": "Zebra",
+    "named": false
+  },
+  {
+    "type": "[",
     "named": false
   },
   {

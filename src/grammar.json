@@ -2220,6 +2220,10 @@
             },
             {
               "type": "SYMBOL",
+              "name": "sdoc_node"
+            },
+            {
+              "type": "SYMBOL",
               "name": "document_from_file"
             }
           ]
@@ -2434,6 +2438,78 @@
         {
           "type": "STRING",
           "value": "\n"
+        }
+      ]
+    },
+    "sdoc_node": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "PREC_RIGHT",
+          "value": 1,
+          "content": {
+            "type": "FIELD",
+            "name": "node_type",
+            "content": {
+              "type": "SYMBOL",
+              "name": "requirement_type"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "FIELD",
+            "name": "fields",
+            "content": {
+              "type": "SYMBOL",
+              "name": "sdoc_node_field"
+            }
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "RELATIONS:"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\n"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "FIELD",
+                    "name": "relations",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "reference"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -2665,7 +2741,18 @@
     }
   ],
   "conflicts": [],
-  "precedences": [],
+  "precedences": [
+    [
+      {
+        "type": "SYMBOL",
+        "name": "sdoc_section"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "sdoc_node"
+      }
+    ]
+  ],
   "externals": [],
   "inline": [],
   "supertypes": [],

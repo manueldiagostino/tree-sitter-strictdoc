@@ -18,6 +18,7 @@ const section_or_requirement_rules = require("./rules/section_or_requirement");
 module.exports = grammar({
   name: "strictdoc",
   extras: (_) => ["\r"],
+  precedences: ($) => [[$.sdoc_section, $.sdoc_node]],
 
   rules: {
     source_file: ($) =>
