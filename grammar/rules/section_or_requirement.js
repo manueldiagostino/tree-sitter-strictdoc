@@ -20,17 +20,18 @@ module.exports = {
 
   section_body: ($) =>
     seq(
-      optional(seq("MID: ", field("mid", $.single_line_string), "\n")),
-      optional(seq("UID: ", field("uid", $.uid_string), "\n")),
+      optional(seq("MID", ":", " ", field("mid", $.single_line_string), "\n")),
+      optional(seq("UID", ":", " ", field("uid", $.uid_string), "\n")),
       optional(
-        seq("LEVEL: ", field("custom_level", $.single_line_string), "\n"),
+        seq("LEVEL", ":", " ", field("custom_level", $.single_line_string), "\n"),
       ),
-      "TITLE: ",
+      "TITLE",
+      ":", " ",
       field("title", $.single_line_string),
       "\n",
       optional(
         seq(
-          choice("PREFIX: ", "REQ_PREFIX: "),
+          choice(seq("PREFIX", ":", " "), seq("REQ_PREFIX", ":", " ")),
           field("requirement_prefix", $.single_line_string),
           "\n",
         ),
@@ -43,7 +44,8 @@ module.exports = {
     seq(
       "[DOCUMENT_FROM_FILE]",
       "\n",
-      "FILE: ",
+      "FILE",
+      ":", " ",
       field("path", $.single_line_string),
       "\n",
     ),
@@ -80,14 +82,14 @@ module.exports = {
 
   sdoc_node_field: ($) =>
     choice(
-      seq("MID: ", field("mid", $.single_line_string), "\n"),
-      seq("UID: ", field("uid", $.uid_string), "\n"),
+      seq("MID", ":", " ", field("mid", $.single_line_string), "\n"),
+      seq("UID", ":", " ", field("uid", $.uid_string), "\n"),
       seq(
         field("field_name", $.field_name),
         ":",
         choice(
           seq(" ", $.single_line_text_part),
-          seq(" >>>\n", $.text_part, "<<<", "\n"),
+          seq(" ", $.multi_line_string, "\n"),
         ),
       ),
     ),

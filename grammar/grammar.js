@@ -25,8 +25,9 @@ module.exports = grammar({
       seq(
         "[DOCUMENT]",
         "\n",
-        optional(seq("MID: ", field("mid", $.single_line_string), "\n")),
-        "TITLE: ",
+        optional(seq("MID", ":", " ", field("mid", $.single_line_string), "\n")),
+        "TITLE",
+        ":", " ",
         field("title", $.single_line_string),
         "\n",
         optional(field("config", $.document_config)),

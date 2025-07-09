@@ -6,11 +6,11 @@
       "camelcase": "Strictdoc",
       "title": "Strictdoc",
       "scope": "source.strictdoc",
-      "file-types": [
-        "sdoc"
-      ],
+      "file-types": ["sdoc"],
+      "first-line-regex": "^\\[DOCUMENT\\]",
       "injection-regex": "^strictdoc$",
-      "class-name": "TreeSitterStrictdoc"
+      "class-name": "TreeSitterStrictdoc",
+      "highlights": "queries/highlights.scm"
     }
   ],
   "metadata": {
@@ -38,3 +38,4 @@
     "zig": false
   }
 }
+

@@ -8,13 +8,16 @@ module.exports = {
     ),
 
   import_from_file: ($) =>
-    seq("IMPORT_FROM_FILE: ", field("import_path", /.*/), "\n"),
+    seq("IMPORT_FROM_FILE", ":", " ", field("import_path", /.*/), "\n"),
 
   grammar_elements: ($) => seq("ELEMENTS:\n", repeat1($.grammar_element)),
 
   grammar_element: ($) =>
     seq(
-      "- TAG: ",
+      "- ",
+      "TAG",
+      ":",
+      " ",
       field("requirement_type", $.requirement_type),
       "\n",
       optional(field("properties", $.grammar_properties)),
@@ -24,7 +27,9 @@ module.exports = {
 
   grammar_properties: ($) =>
     seq(
-      "  PROPERTIES:",
+      "  ",
+      "PROPERTIES",
+      ":",
       "\n",
       optional($.grammar_property_is_composite),
       optional($.grammar_property_prefix),
@@ -35,12 +40,13 @@ module.exports = {
     seq("    IS_COMPOSITE: ", $.boolean_choice, "\n"),
 
   grammar_property_prefix: ($) =>
-    seq("    PREFIX: ", $.single_line_string, "\n"),
+    seq("    PREFIX", ":", " ", $.single_line_string, "\n"),
 
   grammar_property_view_style: ($) =>
-    seq("    VIEW_STYLE: ", $.style_choice, "\n"),
+    seq("    VIEW_STYLE", ":", " ", $.style_choice, "\n"),
 
-  grammar_fields: ($) => seq("  FIELDS:", "\n", repeat1($.grammar_field)),
+  grammar_fields: ($) =>
+    seq("  ", "FIELDS", ":", "\n", repeat1($.grammar_field)),
 
   grammar_field: ($) =>
     seq(
@@ -56,12 +62,17 @@ module.exports = {
 
   grammar_field_title: ($) =>
     seq(
-      "  - TITLE: ",
+      "  ", "-", " ",
+      "TITLE",
+      ":",
+      " ",
       field("title", $.field_name),
       "\n",
       optional(
         seq(
-          "    HUMAN_TITLE: ",
+          "    HUMAN_TITLE",
+          ":",
+          " ",
           field("human_title", $.single_line_string),
           "\n",
         ),
@@ -69,20 +80,36 @@ module.exports = {
     ),
 
   grammar_field_required: ($) =>
-    seq("    REQUIRED: ", field("value", $.boolean_choice), "\n"),
+    seq("    ", "REQUIRED", ":", " ", field("value", $.boolean_choice), "\n"),
 
   grammar_field_choices: ($) =>
     seq("(", $.choice_option, repeat(seq(", ", $.choice_option)), ")"),
 
-  grammar_field_string: ($) => "    TYPE: String\n",
+  grammar_field_string: ($) => seq("    ", "TYPE", ":", " String\n"),
 
   grammar_field_single_choice: ($) =>
-    seq("    TYPE: SingleChoice", $.grammar_field_choices, "\n"),
+    seq(
+      "    ",
+      "TYPE",
+      ":",
+      " ",
+      "SingleChoice",
+      $.grammar_field_choices,
+      "\n",
+    ),
 
   grammar_field_multiple_choice: ($) =>
-    seq("    TYPE: MultipleChoice", $.grammar_field_choices, "\n"),
+    seq(
+      "    ",
+      "TYPE",
+      ":",
+      " ",
+      "MultipleChoice",
+      $.grammar_field_choices,
+      "\n",
+    ),
 
-  grammar_field_tag: ($) => seq("    TYPE: Tag", "\n"),
+  grammar_field_tag: ($) => seq("    ", "TYPE", ":", " ", "Tag", "\n"),
 
   grammar_relations: ($) =>
     seq("  RELATIONS:", "\n", repeat1($.grammar_relation)),
@@ -96,28 +123,52 @@ module.exports = {
 
   grammar_relation_parent: ($) =>
     seq(
-      "  - TYPE: Parent",
+      "  ", "-", " ",
+      "TYPE",
+      ": Parent",
       "\n",
       optional(
-        seq("    ROLE: ", field("relation_role", $.single_line_string), "\n"),
+        seq(
+          "    ROLE",
+          ":",
+          " ",
+          field("relation_role", $.single_line_string),
+          "\n",
+        ),
       ),
     ),
 
   grammar_relation_child: ($) =>
     seq(
-      "  - TYPE: Child",
+      "  ", "-", " ",
+      "TYPE",
+      ": Child",
       "\n",
       optional(
-        seq("    ROLE: ", field("relation_role", $.single_line_string), "\n"),
+        seq(
+          "    ROLE",
+          ":",
+          " ",
+          field("relation_role", $.single_line_string),
+          "\n",
+        ),
       ),
     ),
 
   grammar_relation_file: ($) =>
     seq(
-      "  - TYPE: File",
+      "  ", "-", " ",
+      "TYPE",
+      ": File",
       "\n",
       optional(
-        seq("    ROLE: ", field("relation_role", $.single_line_string), "\n"),
+        seq(
+          "    ROLE",
+          ":",
+          " ",
+          field("relation_role", $.single_line_string),
+          "\n",
+        ),
       ),
     ),
 };

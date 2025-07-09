@@ -1,11 +1,13 @@
 const REGEX_UID = /([\w]+[\w()\-\/.: ]*)/;
 
 module.exports = {
-  reserved_keyword: () =>
-    choice("DOCUMENT", "GRAMMAR", "SECTION", "DOCUMENT_FROM_FILE"),
+  DOCUMENT: ($) => "DOCUMENT",
+  GRAMMAR: ($) => "GRAMMAR",
+  SECTION: ($) => "SECTION",
+  DOCUMENT_FROM_FILE: ($) => "DOCUMENT_FROM_FILE",
 
   single_line_string: ($) => /[^\s][^\n\r]*/,
-  multi_line_string: ($) => seq(">>>\n", $.text_part, "<<<"),
+  multi_line_string: ($) => seq(">>>", "\n", $.text_part, "<<<"),
 
   anchor: ($) =>
     seq(
@@ -16,7 +18,7 @@ module.exports = {
       "\n",
     ),
 
-  inline_link: ($) => seq("[LINK: ", field("value", REGEX_UID), "]"),
+  inline_link: ($) => seq("[LINK", ":", " ", field("value", REGEX_UID), "]"),
 
   text_part: ($) => repeat1(choice($.anchor, $.normal_string)),
   normal_string: ($) =>

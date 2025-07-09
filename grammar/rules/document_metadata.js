@@ -1,6 +1,6 @@
 module.exports = {
   document_custom_metadata: ($) =>
-    seq("METADATA:\n", $.document_custom_metadata_entries),
+    seq("METADATA", ":", "\n", $.document_custom_metadata_entries),
 
   document_custom_metadata_entries: ($) =>
     repeat1($.document_custom_metadata_entry),
@@ -11,7 +11,7 @@ module.exports = {
   document_custom_metadata_key_value_pair: ($) =>
     seq(
       field("key", $.document_custom_metadata_key),
-      ": ",
+      ":", " ",
       field("value", $.single_line_string),
     ),
 
