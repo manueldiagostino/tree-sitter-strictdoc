@@ -99,7 +99,7 @@
 
 ;; Anchors and links
 (anchor) @annotation
-(inline_link) @link
+(inline_link) @string.special.url
 
 [
  (role_id)
