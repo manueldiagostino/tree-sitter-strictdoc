@@ -42,8 +42,8 @@
 
 ;; Operators
 [
-  "<<<"
-  ">>>"
+  (multiline_opening_token)
+  (multiline_closing_token)
 ] @operator
 
 ;; Punctuation
