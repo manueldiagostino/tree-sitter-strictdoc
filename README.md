@@ -94,6 +94,10 @@ return {
 :checkhealth nvim-treesitter
 ```
 
+> To install the new version of the highlighting file, delete the old
+> `~/.local/share/nvim/lazy/nvim-treesitter/queries/strictdoc/highlights.scm`
+> and restart Neovim.
+
 ## Usage
 
 Open any `.sdoc` file in Neovim. The filetype should be detected as `sdoc`, the parser will load automatically, and Tree‑Sitter will provide syntax highlighting, incremental selection, and more.
