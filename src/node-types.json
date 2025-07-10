@@ -1592,14 +1592,6 @@
     "named": false
   },
   {
-    "type": "    VISIBLE_FIELDS:",
-    "named": false
-  },
-  {
-    "type": "  RELATIONS:",
-    "named": false
-  },
-  {
     "type": " String\n",
     "named": false
   },
@@ -1800,6 +1792,10 @@
     "named": false
   },
   {
+    "type": "RELATIONS:",
+    "named": false
+  },
+  {
     "type": "REQUIRED",
     "named": false
   },
@@ -1889,6 +1885,10 @@
   },
   {
     "type": "VIEW_STYLE",
+    "named": false
+  },
+  {
+    "type": "VISIBLE_FIELDS",
     "named": false
   },
   {

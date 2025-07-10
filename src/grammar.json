@@ -1049,7 +1049,15 @@
         },
         {
           "type": "STRING",
-          "value": "    VISIBLE_FIELDS:"
+          "value": "    "
+        },
+        {
+          "type": "STRING",
+          "value": "VISIBLE_FIELDS"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
         },
         {
           "type": "STRING",
@@ -1480,32 +1488,36 @@
       ]
     },
     "grammar_fields": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "  "
-        },
-        {
-          "type": "STRING",
-          "value": "FIELDS"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "STRING",
-          "value": "\n"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "grammar_field"
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "  "
+          },
+          {
+            "type": "STRING",
+            "value": "FIELDS"
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          },
+          {
+            "type": "STRING",
+            "value": "\n"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SYMBOL",
+              "name": "grammar_field"
+            }
           }
-        }
-      ]
+        ]
+      }
     },
     "grammar_field": {
       "type": "SEQ",
@@ -1814,7 +1826,11 @@
       "members": [
         {
           "type": "STRING",
-          "value": "  RELATIONS:"
+          "value": "  "
+        },
+        {
+          "type": "STRING",
+          "value": "RELATIONS:"
         },
         {
           "type": "STRING",

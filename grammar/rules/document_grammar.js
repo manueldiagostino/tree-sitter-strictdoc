@@ -48,7 +48,7 @@ module.exports = {
     seq("    ", "VIEW_STYLE", ":", " ", $.style_choice, "\n"),
 
   grammar_fields: ($) =>
-    seq("  ", "FIELDS", ":", "\n", repeat1($.grammar_field)),
+    prec.left(seq("  ", "FIELDS", ":", "\n", repeat1($.grammar_field))),
 
   grammar_field: ($) =>
     seq(
