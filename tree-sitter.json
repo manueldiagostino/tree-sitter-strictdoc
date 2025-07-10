@@ -10,7 +10,8 @@
       "first-line-regex": "^\\[DOCUMENT\\]",
       "injection-regex": "^strictdoc$",
       "class-name": "TreeSitterStrictdoc",
-      "highlights": "queries/highlights.scm"
+      "highlights": "queries/highlights.scm",
+      "tags": "queries/tags.scm"
     }
   ],
   "metadata": {
@@ -38,4 +39,3 @@
     "zig": false
   }
 }
-
