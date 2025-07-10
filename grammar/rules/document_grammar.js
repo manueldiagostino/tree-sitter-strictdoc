@@ -119,7 +119,7 @@ module.exports = {
   grammar_field_tag: ($) => seq("    ", "TYPE", ":", " ", "Tag", "\n"),
 
   grammar_relations: ($) =>
-    seq("  RELATIONS:", "\n", repeat1($.grammar_relation)),
+    seq("  ", "RELATIONS:", "\n", repeat1($.grammar_relation)),
 
   grammar_relation: ($) =>
     choice(

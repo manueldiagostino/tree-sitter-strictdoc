@@ -5,10 +5,10 @@
 ;; —————————————————————————————————————————
 [
   "[DOCUMENT]"
-  "[GRAMMAR]"
-  "[SECTION]"
-  "[/SECTION]"
   "[DOCUMENT_FROM_FILE]"
+  "[GRAMMAR]"
+  "[/SECTION]"
+  "[SECTION]"
   (sdoc_node_opening)
   (sdoc_composite_node_opening)
   (sdoc_composite_node_closing)
@@ -16,35 +16,43 @@
 ] @keyword
 
 [
-  "TITLE"
-  "UID"
-  "MID"
-  "TAG"
-  "VERSION"
-  "DATE"
-  "PROPERTIES"
-  "METADATA"
-  "CLASSIFICATION"
-  "PREFIX"
-  "REQ_PREFIX"
-  "ROOT"
-  "OPTIONS"
-  "ENABLE_MID"
-  "MARKUP"
   "AUTO_LEVELS"
-  "LAYOUT"
-  "VIEW_STYLE"
-  "REQUIREMENT_STYLE"
-  "NODE_IN_TOC"
-  "REQUIREMENT_IN_TOC"
+  "CLASSIFICATION"
+  "DATE"
   "DEFAULT_VIEW"
-  "TYPE"
-  "REQUIRED"
-  "FILE"
-  "VALUE"
-  "ROLE"
-  "FORMAT"
+  "ELEMENTS"
+  "ENABLE_MID"
   "FIELDS"
+  "FILE"
+  "FORMAT"
+  "IMPORT_FROM_FILE"
+  "IS_COMPOSITE"
+  "LAYOUT"
+  "LEVEL"
+  "MARKUP"
+  "METADATA"
+  "MID"
+  "NAME"
+  "NODE_IN_TOC"
+  "OBJECT_TYPE"
+  "OPTIONS"
+  "PLACEMENT"
+  "PREFIX"
+  "PROPERTIES"
+  "REQ_PREFIX"
+  "REQUIRED"
+  "REQUIREMENT_IN_TOC"
+  "REQUIREMENT_STYLE"
+  "ROLE"
+  "ROOT"
+  "TAG"
+  "TITLE"
+  "TYPE"
+  "UID"
+  "VALUE"
+  "VERSION"
+  "VIEW_STYLE"
+  "VISIBLE_FIELDS"
 ] @type.builtin
 
 ;; Operators
@@ -67,22 +75,22 @@
 
 ;; Config option values
 [
-  "Default"
-  "Website"
-  "RST"
-  "Text"
-  "HTML"
-  "On"
-  "Off"
-  "Plain"
-  "Inline"
-  "Simple"
-  "Narrative"
-  "Table"
-  "Zebra"
-  "Parent"
   "Child"
+  "Default"
   "File"
+  "HTML"
+  "Inline"
+  "Narrative"
+  "Off"
+  "On"
+  "Parent"
+  "Plain"
+  "RST"
+  "Simple"
+  "Table"
+  "Text"
+  "Website"
+  "Zebra"
 ] @constant.builtin
 
 
@@ -96,6 +104,7 @@
 ;; Fields
 (document_custom_metadata_key) @property
 [ "RELATIONS" (field_name) ] @variable.member
+(choice_option) @variable.parameter
 
 ;; Anchors and links
 (anchor) @annotation

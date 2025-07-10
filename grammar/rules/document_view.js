@@ -1,13 +1,21 @@
 module.exports = {
-  document_view: ($) => seq("VIEWS", ":",  "\n", repeat1($.view_element)),
+  document_view: ($) => seq("VIEWS", ":", "\n", repeat1($.view_element)),
 
   view_element: ($) =>
     seq(
-      "-", " ", "ID", ":", " ",
+      "-",
+      " ",
+      "ID",
+      ":",
+      " ",
       field("id", $.uid_string),
       "\n",
-      optional(seq("  ", "NAME", ":", " ", field("name", $.single_line_string), "\n")),
-      "  ", "TAGS", ":",
+      optional(
+        seq("  ", "NAME", ":", " ", field("name", $.single_line_string), "\n"),
+      ),
+      "  ",
+      "TAGS",
+      ":",
       "\n",
       repeat1($.view_element_tag),
       optional(
@@ -17,22 +25,36 @@ module.exports = {
 
   view_element_tag: ($) =>
     seq(
-      "  ", "-", " ", "OBJECT_TYPE", ":", " ",
+      "  ",
+      "-",
+      " ",
+      "OBJECT_TYPE",
+      ":",
+      " ",
       field("object_type", $.single_line_string),
       "\n",
-      "    VISIBLE_FIELDS:",
+      "    ",
+      "VISIBLE_FIELDS:",
       "\n",
       repeat1($.view_element_field),
     ),
 
   view_element_field: ($) =>
     seq(
-      "    ", "-", " ", "NAME", ":", " ",
+      "    ",
+      "-",
+      " ",
+      "NAME",
+      ":",
+      " ",
       field("name", $.single_line_string),
       "\n",
       optional(
         seq(
-          "      ", "PLACEMENT", ":", " ",
+          "      ",
+          "PLACEMENT",
+          ":",
+          " ",
           field("placement", $.single_line_string),
           "\n",
         ),
