@@ -109,6 +109,10 @@ If highlighting isn't applied, verify:
 :TSBufEnable highlight
 ```
 
+## Example
+
+![comparison](./doc/pictures/comparison.png)
+
 ## References
 
 - StrictDoc [official website](https://strictdoc.readthedocs.io/en/stable/)
