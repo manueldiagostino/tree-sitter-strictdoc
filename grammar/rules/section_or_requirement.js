@@ -3,7 +3,7 @@ module.exports = {
 
   section_or_requirement: ($) =>
     seq(
-      $.new_line,
+      $._newline,
       choice(
         $.sdoc_node,
         $.sdoc_section,
@@ -65,7 +65,7 @@ module.exports = {
     ),
 
   sdoc_node_opening: ($) =>
-    seq("[", field("node_type", $.sdoc_node_type_name), "]", $.new_line),
+    seq("[", field("node_type", $.sdoc_node_type_name), "]", $._newline),
 
   sdoc_node_type_name: ($) => $.requirement_type,
 
@@ -77,7 +77,7 @@ module.exports = {
       optional(
         field("section_and_requirement_list", $.section_or_requirement_list),
       ),
-      $.new_line,
+      $._newline,
       $.sdoc_composite_node_closing,
     ),
 
@@ -86,7 +86,7 @@ module.exports = {
       "[[",
       field("node_type_opening", $.sdoc_composite_node_type_name),
       "]]",
-      $.new_line,
+      $._newline,
     ),
 
   sdoc_composite_node_closing: ($) =>
@@ -94,7 +94,7 @@ module.exports = {
       "[[/",
       field("node_type_closing", $.sdoc_composite_node_type_name),
       "]]",
-      $.new_line,
+      $._newline,
     ),
 
   sdoc_composite_node_type_name: ($) => $.requirement_type,

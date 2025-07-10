@@ -2941,7 +2941,7 @@
       "type": "PATTERN",
       "value": "[A-Z][_A-Z0-9]*"
     },
-    "new_line": {
+    "_newline": {
       "type": "STRING",
       "value": "\n"
     },
@@ -2961,7 +2961,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "new_line"
+          "name": "_newline"
         },
         {
           "type": "CHOICE",
@@ -3340,7 +3340,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "new_line"
+          "name": "_newline"
         }
       ]
     },
@@ -3412,7 +3412,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "new_line"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -3441,7 +3441,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "new_line"
+          "name": "_newline"
         }
       ]
     },
@@ -3466,7 +3466,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "new_line"
+          "name": "_newline"
         }
       ]
     },
@@ -3609,16 +3609,6 @@
       {
         "type": "SYMBOL",
         "name": "sdoc_node"
-      }
-    ],
-    [
-      {
-        "type": "SYMBOL",
-        "name": "section_or_requirement"
-      },
-      {
-        "type": "SYMBOL",
-        "name": "new_line"
       }
     ]
   ],

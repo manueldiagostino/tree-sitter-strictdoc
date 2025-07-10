@@ -921,11 +921,6 @@
     }
   },
   {
-    "type": "new_line",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "normal_string",
     "named": true,
     "fields": {},
@@ -1014,10 +1009,6 @@
       "required": true,
       "types": [
         {
-          "type": "new_line",
-          "named": true
-        },
-        {
           "type": "reference",
           "named": true
         },
@@ -1050,16 +1041,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "new_line",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1076,16 +1057,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "new_line",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1203,16 +1174,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "new_line",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1316,15 +1277,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "document_from_file",
-          "named": true
-        },
-        {
-          "type": "new_line",
           "named": true
         },
         {

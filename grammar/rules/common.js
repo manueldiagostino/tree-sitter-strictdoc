@@ -44,6 +44,6 @@ module.exports = {
   uid_string: ($) => REGEX_UID,
   field_name: ($) => /[A-Z][_A-Z0-9]*/,
   boolean_choice: () => choice("True", "False"),
-  new_line: ($) => "\n",
+  _newline: ($) => "\n",
   _eof: ($) => "\0",
 };
