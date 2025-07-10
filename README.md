@@ -88,27 +88,11 @@ return {
 }
 ```
 
-2. Restart Neovim and run:
+2. To verify the installation, restart Neovim and run:
 
 ```vim
-:TSInstall strictdoc
+:checkhealth nvim-treesitter
 ```
-
-### Using packer.nvim or lazy.nvim
-
-In your plugin specification:
-
-```lua
-use {
-  "nvim-treesitter/nvim-treesitter",
-  run = ":TSUpdate",
-  config = function()
-    -- (same registration snippet as above)
-  end,
-}
-```
-
-Then `:TSInstall strictdoc`.
 
 ## Usage
 
@@ -119,13 +103,12 @@ If highlighting isn't applied, verify:
 ```vim
 :echo &filetype    " should return sdoc
 :TSBufEnable highlight
-:TSPlaygroundToggle
 ```
 
 ## References
 
-- StrictDoc [official website](https://strictdoc.org)
-- StrictDoc [grammar](https://github.com/manueldiagostino/tree-sitter-strictdoc)
+- StrictDoc [official website](https://strictdoc.readthedocs.io/en/stable/)
+- StrictDoc [grammar](https://github.com/strictdoc-project/strictdoc/tree/main/strictdoc/backend/sdoc/grammar)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [Adding custom parsers](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Adding-parsers) to nvim-treesitter
 
