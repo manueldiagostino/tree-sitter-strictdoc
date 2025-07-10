@@ -42,7 +42,7 @@ module.exports = {
   file_path: ($) => $.single_line_string,
 
   uid_string: ($) => REGEX_UID,
-  field_name: ($) => /[A-Z][_A-Z0-9]*/,
+  field_name: ($) => token(/[A-Z][_A-Z0-9]*/),
   boolean_choice: () => choice("True", "False"),
   _newline: ($) => "\n",
   _eof: ($) => "\0",

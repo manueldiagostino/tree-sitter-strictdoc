@@ -1488,36 +1488,32 @@
       ]
     },
     "grammar_fields": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "  "
-          },
-          {
-            "type": "STRING",
-            "value": "FIELDS"
-          },
-          {
-            "type": "STRING",
-            "value": ":"
-          },
-          {
-            "type": "STRING",
-            "value": "\n"
-          },
-          {
-            "type": "REPEAT1",
-            "content": {
-              "type": "SYMBOL",
-              "name": "grammar_field"
-            }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "  "
+        },
+        {
+          "type": "STRING",
+          "value": "FIELDS"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "grammar_field"
           }
-        ]
-      }
+        }
+      ]
     },
     "grammar_field": {
       "type": "SEQ",
@@ -1554,90 +1550,86 @@
       ]
     },
     "grammar_field_title": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "  "
-          },
-          {
-            "type": "STRING",
-            "value": "-"
-          },
-          {
-            "type": "STRING",
-            "value": " "
-          },
-          {
-            "type": "STRING",
-            "value": "TITLE"
-          },
-          {
-            "type": "STRING",
-            "value": ":"
-          },
-          {
-            "type": "STRING",
-            "value": " "
-          },
-          {
-            "type": "FIELD",
-            "name": "title",
-            "content": {
-              "type": "SYMBOL",
-              "name": "field_name"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": "\n"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "    "
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "HUMAN_TITLE"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ":"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": " "
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "human_title",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "single_line_string"
-                    }
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "\n"
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "  "
+        },
+        {
+          "type": "STRING",
+          "value": "-"
+        },
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "STRING",
+          "value": "TITLE"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "FIELD",
+          "name": "title",
+          "content": {
+            "type": "SYMBOL",
+            "name": "field_name"
           }
-        ]
-      }
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "    "
+                },
+                {
+                  "type": "STRING",
+                  "value": "HUMAN_TITLE"
+                },
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "STRING",
+                  "value": " "
+                },
+                {
+                  "type": "FIELD",
+                  "name": "human_title",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "single_line_string"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": "\n"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "grammar_field_required": {
       "type": "SEQ",
@@ -1722,7 +1714,15 @@
         },
         {
           "type": "STRING",
-          "value": " String\n"
+          "value": " "
+        },
+        {
+          "type": "STRING",
+          "value": "String"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
         }
       ]
     },
@@ -2191,8 +2191,11 @@
       "type": "FIELD",
       "name": "option",
       "content": {
-        "type": "PATTERN",
-        "value": "[\\w\\/-]+"
+        "type": "TOKEN",
+        "content": {
+          "type": "PATTERN",
+          "value": "[\\w\\/-]+"
+        }
       }
     },
     "requirement_type": {
@@ -2954,8 +2957,11 @@
       "value": "([\\w]+[\\w()\\-\\/.: ]*)"
     },
     "field_name": {
-      "type": "PATTERN",
-      "value": "[A-Z][_A-Z0-9]*"
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[A-Z][_A-Z0-9]*"
+      }
     },
     "_newline": {
       "type": "STRING",
@@ -3614,6 +3620,12 @@
   "conflicts": [
     [
       "section_or_requirement_list"
+    ],
+    [
+      "grammar_field_title"
+    ],
+    [
+      "grammar_fields"
     ]
   ],
   "precedences": [

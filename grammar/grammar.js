@@ -19,7 +19,11 @@ module.exports = grammar({
   name: "strictdoc",
   extras: (_) => ["\r"],
   precedences: ($) => [[$.sdoc_section, $.sdoc_node]],
-  conflicts: ($) => [[$.section_or_requirement_list]],
+  conflicts: ($) => [
+    [$.section_or_requirement_list],
+    [$.grammar_field_title],
+    [$.grammar_fields],
+  ],
 
   rules: {
     source_file: ($) =>

@@ -1,7 +1,7 @@
 module.exports = {
   boolean_choice: () => choice("True", "False"),
 
-  choice_option: () => field("option", /[\w\/-]+/),
+  choice_option: () => field("option", token(/[\w\/-]+/)),
 
   requirement_type: ($) => /[A-Z]+[_A-Z]*/,
 

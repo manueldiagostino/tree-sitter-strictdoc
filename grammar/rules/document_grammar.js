@@ -48,7 +48,7 @@ module.exports = {
     seq("    ", "VIEW_STYLE", ":", " ", $.style_choice, "\n"),
 
   grammar_fields: ($) =>
-    prec.left(seq("  ", "FIELDS", ":", "\n", repeat1($.grammar_field))),
+    seq("  ", "FIELDS", ":", "\n", repeat1($.grammar_field)),
 
   grammar_field: ($) =>
     seq(
@@ -63,25 +63,23 @@ module.exports = {
     ),
 
   grammar_field_title: ($) =>
-    prec.left(
-      seq(
-        "  ",
-        "-",
-        " ",
-        "TITLE",
-        ":",
-        " ",
-        field("title", $.field_name),
-        "\n",
-        optional(
-          seq(
-            "    ",
-            "HUMAN_TITLE",
-            ":",
-            " ",
-            field("human_title", $.single_line_string),
-            "\n",
-          ),
+    seq(
+      "  ",
+      "-",
+      " ",
+      "TITLE",
+      ":",
+      " ",
+      field("title", $.field_name),
+      "\n",
+      optional(
+        seq(
+          "    ",
+          "HUMAN_TITLE",
+          ":",
+          " ",
+          field("human_title", $.single_line_string),
+          "\n",
         ),
       ),
     ),
@@ -92,7 +90,7 @@ module.exports = {
   grammar_field_choices: ($) =>
     seq("(", $.choice_option, repeat(seq(", ", $.choice_option)), ")"),
 
-  grammar_field_string: ($) => seq("    ", "TYPE", ":", " String\n"),
+  grammar_field_string: ($) => seq("    ", "TYPE", ":", " ", "String", "\n"),
 
   grammar_field_single_choice: ($) =>
     seq(
