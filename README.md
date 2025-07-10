@@ -16,75 +16,70 @@ This repository provides a Tree‑Sitter grammar for [StrictDoc](https://strictd
 
 ```lua
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    opts = {
-        ensure_installed = { "strictdoc" },
-        highlight = { enable = true },
-    },
-    config = function(_, opts)
-        -- Add custom filetype detection
-        vim.filetype.add({
-        extension = { sdoc = "sdoc" },
-        })
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  opts = {
+    ensure_installed = { "strictdoc" },
+    highlight = { enable = true },
+  },
+  config = function(_, opts)
+    -- Add custom filetype detection
+    vim.filetype.add({
+      extension = { sdoc = "sdoc" },
+    })
 
-        -- Register the custom parser configuration for strictdoc
-        local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-        parser_configs.strictdoc = {
-        install_info = {
-            url = "https://github.com/manueldiagostino/tree-sitter-strictdoc",
-            files = { "src/parser.c" },
-            branch = "main",
-        },
-        filetype = "sdoc",
-        }
+    -- Register the custom parser configuration for strictdoc
+    local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+    parser_configs.strictdoc = {
+      install_info = {
+        url = "https://github.com/manueldiagostino/tree-sitter-strictdoc",
+        files = { "src/parser.c" },
+        branch = "main",
+      },
+      filetype = "sdoc",
+    }
+    require("vim.treesitter.language").register("strictdoc", "sdoc")
 
-        -- Associate the parser with the sdoc filetype
-        require("vim.treesitter.language").register("strictdoc", "sdoc")
+    -- Apply the Treesitter settings
+    require("nvim-treesitter.configs").setup(opts)
 
-        -- Apply the Treesitter settings
-        require("nvim-treesitter.configs").setup(opts)
+    -- After setup: ensure parser repo is available and copy missing query files
+    local repo_url = "https://github.com/manueldiagostino/tree-sitter-strictdoc"
+    local branch = "main"
+    local install_path = vim.fn.stdpath("data") .. "/lazy/tree-sitter-strictdoc"
+    if vim.fn.isdirectory(install_path) == 0 then
+      vim.fn.system({
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "--branch",
+        branch,
+        repo_url,
+        install_path,
+      })
+      vim.notify("Cloned tree-sitter-strictdoc into " .. install_path, vim.log.levels.INFO)
+    end
 
-        -- After setup: check if highlights.scm is missing in the runtime path
-        local scm_target_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/queries/strictdoc"
-        local scm_target_file = scm_target_dir .. "/highlights.scm"
-
-        if vim.fn.filereadable(scm_target_file) == 0 then
-        vim.notify("🔍 highlights.scm not found. Starting installation...", vim.log.levels.INFO)
-
-        -- Clone the parser repository if not already present (for query extraction)
-        local repo_url = "https://github.com/manueldiagostino/tree-sitter-strictdoc"
-        local branch = "main"
-        local install_path = vim.fn.stdpath("data") .. "/lazy/tree-sitter-strictdoc"
-        if vim.fn.isdirectory(install_path) == 0 then
-            vim.fn.system({
-            "git",
-            "clone",
-            "--depth",
-            "1",
-            "--branch",
-            branch,
-            repo_url,
-            install_path,
-            })
-            vim.notify("Cloned tree-sitter-strictdoc into " .. install_path, vim.log.levels.INFO)
-        end
-
-        -- Copy highlights.scm from the cloned plugin repository to nvim-treesitter's runtime path
-        local lazy_path = vim.fn.stdpath("data") .. "/lazy/tree-sitter-strictdoc"
-        local scm_source = lazy_path .. "/queries/highlights.scm"
-
-        if vim.fn.filereadable(scm_source) == 1 then
-            if vim.fn.isdirectory(scm_target_dir) == 0 then
-            vim.fn.mkdir(scm_target_dir, "p")
-            end
-            vim.fn.writefile(vim.fn.readfile(scm_source), scm_target_file)
-            vim.notify("highlights.scm copied to " .. scm_target_file, vim.log.levels.INFO)
+    local target_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/queries/strictdoc"
+    local query_files = { "highlights.scm", "tags.scm" }
+    for _, fname in ipairs(query_files) do
+      local source_file = install_path .. "/queries/" .. fname
+      local target_file = target_dir .. "/" .. fname
+      if vim.fn.filereadable(target_file) == 0 then
+        vim.notify(fname .. " not found. Starting installation...", vim.log.levels.INFO)
+        if vim.fn.filereadable(source_file) == 1 then
+          if vim.fn.isdirectory(target_dir) == 0 then
+            vim.fn.mkdir(target_dir, "p")
+          end
+          vim.fn.writefile(vim.fn.readfile(source_file), target_file)
+          vim.notify(fname .. " copied to " .. target_file, vim.log.levels.INFO)
         else
-            vim.notify("highlights.scm not found at " .. scm_source, vim.log.levels.ERROR)
+          vim.notify(fname .. " not found at " .. source_file, vim.log.levels.ERROR)
         end
-        end
-    end,
+      end
+    end
+  end,
 }
 ```
 
@@ -94,8 +89,13 @@ return {
 :checkhealth nvim-treesitter
 ```
 
-> To install the new version of the highlighting file, delete the old
-> `~/.local/share/nvim/lazy/nvim-treesitter/queries/strictdoc/highlights.scm`
+> To install an updated version of the highlighting files:
+>
+> ```
+> rm -rf ~/.local/share/nvim/lazy/nvim-treesitter/queries/strictdoc/
+> rm -rf ~/.local/share/nvim/lazy/tree-sitter-strictdoc
+> ```
+>
 > and restart Neovim.
 
 ## Usage
