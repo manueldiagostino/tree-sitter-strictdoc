@@ -177,61 +177,38 @@ hidden_tag: (single_line_string) @name) @definition.view.element.hidden_tag
 )
 
 ; -- Section & Requirement Definitions --
+
 (
 (section_or_requirement_list) @definition.section.list
 )
 (
-(sdoc_section) @definition.section
-)
-(
-(section_body
-mid: (single_line_string) @name) @definition.section.mid
-)
-(
-(section_body
-uid: (uid_string) @name) @definition.section.uid
-)
-(
-(section_body
-custom_level: (single_line_string) @name) @definition.section.level
-)
-(
-(section_body
-title: (single_line_string) @name) @definition.section.title
-)
-(
-(section_body
-requirement_prefix: (single_line_string) @name) @definition.section.requirement_prefix
+  (sdoc_section) @definition.section
 )
 
-; -- Section & Requirement Definitions --
 (
-(section_or_requirement_list) @definition.section.list
-)
-(
-(sdoc_section) @definition.section.section
-)
-(
-(section_body
-mid: (single_line_string) @name) @definition.section.mid
-)
-(
-(section_body
-uid: (uid_string) @name) @definition.section.uid
-)
-(
-(section_body
-custom_level: (single_line_string) @name) @definition.section.level
-)
-(
-(section_body
-title: (single_line_string) @name) @definition.section.title
-)
-(
-(section_body
-requirement_prefix: (single_line_string) @name) @definition.section.requirement_prefix
+  (section_body
+    mid: (single_line_string) @name) @definition.section.mid
 )
 
+(
+(section_body
+  uid: (uid_string) @name) @definition.section.uid
+)
+
+(
+  (section_body
+    custom_level: (single_line_string) @name) @definition.section.level
+)
+
+(
+  (section_body
+    title: (single_line_string) @name) @definition.section.title
+)
+
+(
+  (section_body
+    requirement_prefix: (single_line_string) @name) @definition.section.requirement_prefix
+)
 ; -- Document From File Reference --
 (
 (document_from_file
@@ -240,29 +217,42 @@ path: (file_path) @name) @definition.document.from_file
 
 ; -- SDoc Node Definitions --
 (
-(sdoc_node) @definition.section.node
+(sdoc_node) @definition.node
 )
 (
-(sdoc_composite_node) @definition.section.composite_node
+(sdoc_composite_node) @definition.composite_node
 )
 (
 (sdoc_composite_node_opening
-node_type_opening: (sdoc_composite_node_type_name) @name) @definition.section.composite_node.opening
+node_type_opening: (sdoc_composite_node_type_name) @name) @definition.composite_node.opening
 )
 (
-(sdoc_composite_node_type_name) @definition.section.composite_node.type
+(sdoc_composite_node_type_name) @definition.composite_node.type
 )
 
 ; -- SDoc Node Field Definitions --
 (
-(sdoc_node_field
-mid: (single_line_string) @name) @definition.section.node.mid
+  (sdoc_node_field_mid
+    mid: (single_line_string) @name) @definition.node.mid
 )
+
 (
-(sdoc_node_field
-uid: (uid_string) @name) @definition.section.node.uid
+  (sdoc_node_field_uid
+    uid: (uid_string) @name) @definition.node.uid
 )
+
 (
-(sdoc_node_field
-field_name: (field_name) @name) @definition.section.node.field
+  (sdoc_node_field_generic
+    field_name: (field_name) @name
+  ) @definition.node.field
+)
+
+(
+  (parent_req_reference
+    ref_uid: (req_reference_value_id) @name) @reference.node.uid
+)
+
+(
+  (child_req_reference
+    ref_uid: (req_reference_value_id) @name) @reference.node.uid
 )
