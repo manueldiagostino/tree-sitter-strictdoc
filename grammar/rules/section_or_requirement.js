@@ -101,14 +101,21 @@ module.exports = {
 
   sdoc_node_field: ($) =>
     choice(
-      seq("MID", ":", " ", field("mid", $.single_line_string), "\n"),
-      seq("UID", ":", " ", field("uid", $.uid_string), "\n"),
-      seq(
-        field("field_name", $.field_name),
-        ":",
-        " ",
-        choice($.single_line_text_part, $.multi_line_string),
-      ),
+      $.sdoc_node_field_mid,
+      $.sdoc_node_field_uid,
+      $.sdoc_node_field_generic,
+    ),
+
+  sdoc_node_field_mid: ($) =>
+    seq("MID", ":", " ", field("mid", $.single_line_string), "\n"),
+  sdoc_node_field_uid: ($) =>
+    seq("UID", ":", " ", field("uid", $.uid_string), "\n"),
+  sdoc_node_field_generic: ($) =>
+    seq(
+      field("field_name", $.field_name),
+      ":",
+      " ",
+      choice($.single_line_text_part, $.multi_line_string),
     ),
 
   requirement_status: () => choice("Draft", "Active", "Deleted"),
