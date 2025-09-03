@@ -1,0 +1,53 @@
+[DOCUMENT]
+MID: c2d4542d5f1741c88dfcb4f68ad7dcbd
+TITLE: User Guide
+UID: SDOC_UG
+VERSION: Git commit: @GIT_VERSION, Git branch: @GIT_BRANCH
+DATE: @GIT_COMMIT_DATETIME
+OPTIONS:
+  ENABLE_MID: True
+  VIEW_STYLE: Inline
+  NODE_IN_TOC: True
+METADATA:
+  KEY1: True
+  KEY2: True
+
+[DOCUMENT_FROM_FILE]
+FILE: ./ahsjdak.sdoc
+
+[SECTION]
+MID: 75a595ff028741d0bf9067bba8fb787a
+TITLE: Introduction
+
+[/SECTION]
+
+[[COMPOSITE]]
+FIELD_A: Single line field_name
+FIELD_B: >>>
+This is a brief example of a reStructuredText document. It includes several key
+features like *emphasis* (italics), **strong emphasis** (bold), and
+``inline literals``.
+
+Here is a simple list of items:
+1. First item.
+2. Second item.
+3. A link to the `Python website <https://www.python.org/>`_.
+
+.. note::
+   This is a note directive, useful for highlighting important information.
+
+Finally, here is a simple code block highlighted for the Python language:
+
+.. code-block:: python
+
+   def greet(name):
+       """A simple function to greet someone."""
+       print(f"Hello, {name}!")
+
+   # Call the function
+   greet("World")
+<<<
+FIELD_C: [ANCHOR: ANCHOR-EXAMPLE]
+FIELD_D: A single line text part with `inline code` inside.
+
+[[/COMPOSITE]]

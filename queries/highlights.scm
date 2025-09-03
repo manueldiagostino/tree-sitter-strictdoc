@@ -107,8 +107,9 @@
 (choice_option) @variable.parameter
 
 ;; Anchors and links
-(anchor) @annotation
+(anchor) @string.special.url
 (inline_link) @string.special.url
+(file_path) @string.special.path
 
 [
  (role_id)
