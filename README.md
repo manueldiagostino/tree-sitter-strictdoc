@@ -4,10 +4,10 @@ This repository provides a Tree‑Sitter grammar for [StrictDoc](https://strictd
 
 ## Prerequisites
 
-- Neovim v0.8+ with [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) installed
+- Neovim >= 0.11 with [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/tree/main) (**main branch**) installed
 - A C compiler (`gcc` or `clang`) to build the parser
 - Git
-- [tree-sitter-rst](https://github.com/stsewd/tree-sitter-rst) for injections (optional).
+- [tree-sitter-rst](https://github.com/stsewd/tree-sitter-rst) for injections.
 
 ## Installation
 
@@ -72,7 +72,7 @@ syntax highlighting and injections.
 If highlighting isn't applied, verify:
 
 ```vim
-:echo &filetype    " should return sdoc
+:echo &filetype    " should return 'strictdoc'
 :TSBufEnable highlight
 ```
 
