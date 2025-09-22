@@ -1,8 +1,18 @@
 [
+  (section_or_requirement_list)
   (sdoc_node)
   (sdoc_section)
   (sdoc_composite_node)
+  (section_body)
   (text_part)
   (document_grammar)
   (document_config)
+  (view_element_tag)
+  (view_element_field)
+  (document_custom_metadata_entries)
+  (grammar_elements)
+  (grammar_relations)
+  (grammar_fields)
+  (grammar_field)
+  (grammar_relations)
 ] @fold
